@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/Ben-Bromley/UON-COMP1004-Coursework-2/issues"
   },
-  "homepage": "https://github.com/Ben-Bromley/UON-COMP1004-Coursework-2#readme"
+  "homepage": "https://github.com/Ben-Bromley/UON-COMP1004-Coursework-2#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.8"
+  }
 }
