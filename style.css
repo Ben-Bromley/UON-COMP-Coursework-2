@@ -1,13 +1,16 @@
+/* set up some CSS variables to use throughout the application */
 :root {
 	--bg-green: #1a936f;
 	--bg-green-hover: #147558;
 	--bg-green-dark: #0f543f;
 	--bg-green-darker: #0b3d2e;
 	--bg-light: #dbd9db;
+	--bg-white: #edeced;
 	--text-light: #e7e4e7;
 	--text-light-hover: #dbd9db;
 }
 
+/* use Verdana instead of default serif font */
 body * {
 	box-sizing: border-box;
 	font-family: verdana;
@@ -19,6 +22,7 @@ body {
 	height: 80vh;
 }
 
+/* --- HEADER STYLES --- */
 header#header {
 	background: var(--bg-green-dark);
 	padding: 20px;
@@ -28,12 +32,14 @@ header#header h1#page-title {
 	color: var(--text-light);
 }
 
+/* --- MAIN BODY --- */
 main#main-wrapper {
 	display: flex;
 	flex-wrap: wrap;
 	height: 100%;
 }
 
+/* --- SIDEBAR NAVIGATIOIN --- */
 aside#sidebar {
 	flex-grow: 1;
 	background: var(--bg-green);
@@ -45,7 +51,7 @@ aside#sidebar h2#sidebar-title {
 }
 
 hr.hr {
-	color: #e7e4e7;
+	color: var(--text-light-hover);
 	margin: 30px 20px 20px 20px;
 }
 
@@ -58,12 +64,14 @@ aside#sidebar nav ul li {
 	list-style: none;
 	width: 100%;
 }
+
 aside#sidebar nav ul li a {
 	color: var(--text-light);
 	text-decoration: none;
 	display: block;
 	padding: 20px 50px 20px 30px;
 }
+
 aside#sidebar nav ul li a:hover {
 	color: var(--text-light-hover);
 	background-color: var(--bg-green-hover);
@@ -73,12 +81,12 @@ section#content {
 	flex-grow: 2;
 	background: var(--bg-light);
 	min-width: 60ch;
-	/* padding: 4rem; */
+	padding: 0 2rem;
 }
 
+/* --- SEARCH FORM STYLES --- */
 section#content > form#people-search-form {
-	margin: 5rem auto;
-	max-width: 24rem;
+	margin: 4rem auto;
 }
 
 section#content > form#people-search-form > input {
@@ -97,6 +105,29 @@ section#content > form#people-search-form > input#name-search-submit {
 section#content > form#people-search-form > input#name-search-submit:hover {
 	background-color: var(--bg-green-dark);
 }
+
+/* --- PERSON CARD STYLES --- */
+.person-card {
+	background-color: var(--bg-white);
+	margin: 10px;
+	padding: 20px;
+	border-radius: 0.5rem;
+}
+
+.person-card > h3.person-card-title {
+	margin: 0;
+}
+
+.person-card .person-attributes {
+	display: flex;
+	gap: 4rem;
+}
+
+.person-card span.attribute-name {
+	font-weight: bold;
+}
+
+/* --- FOOTER STYLES --- */
 
 footer#footer {
 	background: var(--bg-green-dark);
