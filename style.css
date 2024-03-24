@@ -94,7 +94,7 @@ section#content {
 }
 
 /* --- SEARCH FORM STYLES --- */
-section#content > form#people-search-form {
+section#content > form.search-form {
 	background-color: var(--bg-white);
 	display: flex;
 	flex-direction: column;
@@ -103,7 +103,7 @@ section#content > form#people-search-form {
 	border-bottom: 2px solid var(--bg-green);
 }
 
-section#content > form#people-search-form > input {
+section#content > form.search-form > input {
 	padding: 10px;
 	border: none;
 	border-radius: 0.5rem;
@@ -111,41 +111,41 @@ section#content > form#people-search-form > input {
 	margin: 0.5rem;
 }
 
-section#content > form#people-search-form > input#name-search-submit {
+section#content > form.search-form > input.search-form-submit {
 	background-color: var(--bg-green);
 	color: var(--text-light);
 }
 
-section#content > form#people-search-form > input#name-search-submit:hover {
+section#content > form.search-form > input.search-form-submit:hover {
 	background-color: var(--bg-green-dark);
 }
 
 /* --- PERSON CARD STYLES --- */
-section#people-results {
-	max-height: 65%;
+section.search-results {
+	max-height: 70%;
 	overflow: scroll;
 	margin: 0 1rem;
 	padding: 2rem 5rem;
 	z-index: 1;
 }
 
-.person-card {
+.result-card {
 	background-color: var(--bg-white);
 	margin: 10px;
 	padding: 20px;
 	border-radius: 0.5rem;
 }
 
-.person-card > h3.person-card-title {
+.result-card > h3.result-card-title {
 	margin: 0;
 }
 
-.person-card .person-attributes {
+.result-card .result-attributes {
 	display: flex;
 	gap: 4rem;
 }
 
-.person-card span.attribute-name {
+.result-card span.attribute-name {
 	font-weight: bold;
 }
 
