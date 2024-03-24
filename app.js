@@ -6,13 +6,44 @@ const client = supabase.createClient(
 const peopleSearchForm = document.getElementById("people-search-form");
 peopleSearchForm.addEventListener("submit", submitPeopleSearch);
 
+/**
+ * Handle the submission of the "Search people" form,
+ * and use the inputted name in a request to supabase,
+ * then add the HTML template into the page
+ */
 async function submitPeopleSearch(e) {
 	e.preventDefault();
 	const peopleSearchInput = document.getElementById("name-search").value;
-	console.log("Searching for - " + peopleSearchInput);
+	const peopleResults = document.getElementById("people-results");
+
+	peopleResults.innerHTML = "<p>Loading...</p>";
 	const { data, error } = await client
 		.from("People")
 		.select()
 		.ilike("Name", `%${peopleSearchInput}%`);
 	console.log("Search Result: ", data);
+
+	if (!data.length) {
+		return (peopleResults.innerHTML = "<p>Person not found</p>");
+	}
+
+	peopleResults.innerHTML = data.map((person) => {
+		return renderPersonCard(person);
+	});
+}
+
+function renderPersonCard(person) {
+	return `<div class="person-card">
+						<h3 class="person-card-title">${person.Name}</h3>
+						<div class="person-attributes">
+							<div class="attribute-group">
+								<p><span class="attribute-name">Address: </span>${person.Address}</p>
+								<p><span class="attribute-name">DOB: </span>${person.DOB}</p>
+							</div>
+							<div class="attribute-group">
+								<p><span class="attribute-name">License: </span>${person.LicenseNumber}</p>
+								<p><span class="attribute-name">Expires: </span>${person.ExpiryDate}</p>
+							</div>
+						</div>
+					</div>`;
 }
