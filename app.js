@@ -27,9 +27,11 @@ async function submitPeopleSearch(e) {
 		return (peopleResults.innerHTML = "<p>Person not found</p>");
 	}
 
-	peopleResults.innerHTML = data.map((person) => {
-		return renderPersonCard(person);
-	});
+	peopleResults.innerHTML = data
+		.map((person) => {
+			return renderPersonCard(person);
+		})
+		.join("");
 }
 
 function renderPersonCard(person) {

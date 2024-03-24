@@ -19,16 +19,24 @@ body * {
 
 body {
 	margin: 0px;
-	height: 80vh;
+	height: 100vh;
+	max-height: 100vh;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 }
 
 /* --- HEADER STYLES --- */
 header#header {
 	background: var(--bg-green-dark);
+	display: flex;
+	align-items: center;
 	padding: 20px;
+	height: 10vh;
 }
 
 header#header h1#page-title {
+	margin: 0px;
 	color: var(--text-light);
 }
 
@@ -36,7 +44,7 @@ header#header h1#page-title {
 main#main-wrapper {
 	display: flex;
 	flex-wrap: wrap;
-	height: 100%;
+	height: 85vh;
 }
 
 /* --- SIDEBAR NAVIGATIOIN --- */
@@ -60,40 +68,46 @@ aside#sidebar nav ul {
 	padding-inline-start: 0;
 }
 
-aside#sidebar nav ul li {
+aside#sidebar nav ul li.navigation-link {
 	list-style: none;
 	width: 100%;
 }
 
-aside#sidebar nav ul li a {
+aside#sidebar nav ul li.navigation-link a {
 	color: var(--text-light);
 	text-decoration: none;
 	display: block;
 	padding: 20px 50px 20px 30px;
 }
 
-aside#sidebar nav ul li a:hover {
+aside#sidebar nav ul li.navigation-link a:hover,
+aside#sidebar nav ul li.navigation-link.active a {
 	color: var(--text-light-hover);
 	background-color: var(--bg-green-hover);
 }
 
 section#content {
-	flex-grow: 2;
+	/* make sure the main content is much larger than sidebar */
+	flex-grow: 5;
 	background: var(--bg-light);
 	min-width: 60ch;
-	padding: 0 2rem;
 }
 
 /* --- SEARCH FORM STYLES --- */
 section#content > form#people-search-form {
-	margin: 4rem auto;
+	background-color: var(--bg-white);
+	display: flex;
+	flex-direction: column;
+	padding: 2rem 6rem;
+	z-index: 2;
+	border-bottom: 2px solid var(--bg-green);
 }
 
 section#content > form#people-search-form > input {
 	padding: 10px;
 	border: none;
 	border-radius: 0.5rem;
-	width: 100%;
+	flex-grow: 1;
 	margin: 0.5rem;
 }
 
@@ -107,6 +121,14 @@ section#content > form#people-search-form > input#name-search-submit:hover {
 }
 
 /* --- PERSON CARD STYLES --- */
+section#people-results {
+	max-height: 65%;
+	overflow: scroll;
+	margin: 0 1rem;
+	padding: 2rem 5rem;
+	z-index: 1;
+}
+
 .person-card {
 	background-color: var(--bg-white);
 	margin: 10px;
@@ -131,7 +153,9 @@ section#content > form#people-search-form > input#name-search-submit:hover {
 
 footer#footer {
 	background: var(--bg-green-dark);
-	color: var(--text-light-hover);
-	padding: 20px;
+	color: var(--text-light);
+	padding: 5px;
+	font-size: 0.8rem;
 	text-align: center;
+	height: 5vh;
 }
