@@ -4,17 +4,48 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>COMP1004/2 | Home</title>
+		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<form id="people-search-form">
-			<input
-				type="text"
-				name="search"
-				id="name-search"
-				placeholder="John Smith"
-			/>
-			<input type="submit" id="name-search-submit" value="Search people" />
-		</form>
+		<header id="header">
+			<h1 id="page-title">COMP1004 Database Lookup</h1>
+		</header>
+		<main id="main-wrapper">
+			<aside id="sidebar">
+				<nav>
+					<h2 id="sidebar-title">Navigation</h2>
+					<hr class="hr" />
+					<ul>
+						<li class="navigation-link"><a href="/">People Directory</a></li>
+						<li class="navigation-link">
+							<a href="vehicles.html">Vehicles Directory</a>
+						</li>
+						<li class="navigation-link">
+							<a href="new-vehicle.html">New Vehicle</a>
+						</li>
+						<li class="navigation-link">
+							<a href="incident-report.html">Incident Report</a>
+						</li>
+					</ul>
+				</nav>
+			</aside>
+			<section id="content">
+				<form id="people-search-form">
+					<input
+						type="text"
+						name="search"
+						id="name-search"
+						placeholder="John Smith"
+					/>
+					<input type="submit" id="name-search-submit" value="Search people" />
+				</form>
+			</section>
+		</main>
+		<footer id="footer">
+			<section>
+				<p>&copy; Ben Bromley 2024</p>
+			</section>
+		</footer>
 	</body>
 
 	<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
