@@ -13,6 +13,6 @@ async function submitPeopleSearch(e) {
 	const { data, error } = await client
 		.from("People")
 		.select()
-		.eq("Name", peopleSearchInput);
+		.ilike("Name", `%${peopleSearchInput}%`);
 	console.log("Search Result: ", data);
 }
