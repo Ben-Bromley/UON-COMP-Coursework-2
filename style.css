@@ -26,6 +26,15 @@ body {
 	flex-direction: column;
 }
 
+.btn-primary {
+		background-color: var(--bg-green);
+		color: var(--text-light);
+}
+	
+.btn-primary:hover {
+		background-color: var(--bg-green-dark);
+}
+
 /* --- HEADER STYLES --- */
 header#header {
 	background: var(--bg-green-dark);
@@ -109,15 +118,6 @@ section#content > form.search-form > input {
 	border-radius: 0.5rem;
 	flex-grow: 1;
 	margin: 0.5rem;
-}
-
-section#content > form.search-form > input.search-form-submit {
-	background-color: var(--bg-green);
-	color: var(--text-light);
-}
-
-section#content > form.search-form > input.search-form-submit:hover {
-	background-color: var(--bg-green-dark);
 }
 
 /* --- PERSON CARD STYLES --- */
