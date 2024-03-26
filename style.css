@@ -29,6 +29,7 @@ body {
 .btn-primary {
 		background-color: var(--bg-green);
 		color: var(--text-light);
+		font-weight: 700;
 }
 	
 .btn-primary:hover {
@@ -147,6 +148,37 @@ section.search-results {
 
 .result-card span.attribute-name {
 	font-weight: bold;
+}
+
+/* --- NEW VEHICLE FORM STYLES --- */
+h2.content-header {
+	margin: 2rem 5rem 2rem;
+}
+
+form#create-new-vehicle {
+	background: var(--bg-white);
+	padding: 2rem;
+	margin: 0 5rem 5rem;
+	border-radius: 0.5rem;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 1rem;
+}
+
+form#create-new-vehicle > * {
+	align-self: center;
+}
+
+form#create-new-vehicle > input[type="submit"] {
+	margin-top: 1rem;
+	grid-column: span 2;
+}
+
+
+form#create-new-vehicle input {
+	padding: 10px;
+	border: none;
+	border-radius: 0.5rem;
 }
 
 /* --- FOOTER STYLES --- */

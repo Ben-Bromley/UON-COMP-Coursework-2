@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>COMP1004/2 | Home</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header id="header">
+			<h1 id="page-title">COMP1004 Database Lookup</h1>
+		</header>
+		<main id="main-wrapper">
+			<aside id="sidebar">
+				<nav>
+					<h2 id="sidebar-title">Navigation</h2>
+					<hr class="hr" />
+					<ul>
+						<li class="navigation-link">
+							<a href="/">People Directory</a>
+						</li>
+						<li class="navigation-link">
+							<a href="vehicles.html">Vehicles Directory</a>
+						</li>
+						<li class="navigation-link active">
+							<a href="new-vehicle.html">New Vehicle</a>
+						</li>
+						<li class="navigation-link">
+							<a href="incident-report.html">Incident Report</a>
+						</li>
+					</ul>
+				</nav>
+			</aside>
+			<section id="content">
+				<h2 class="content-header">Register New Vehicle</h2>
+				<form id="create-new-vehicle" class="new-vehicle-form">
+					<label for="vehicle-registration">Registration</label>
+					<input
+						type="text"
+						name="vehicle-registration"
+						id="vehicle-registration"
+						placeholder="SG20 LTP"
+					/>
+					<label for="vehicle-make">Make</label>
+					<input
+						type="text"
+						name="vehicle-make"
+						id="vehicle-make"
+						placeholder="Ford"
+					/>
+					<label for="vehicle-model">Model</label>
+					<input
+						type="text"
+						name="vehicle-model"
+						id="vehicle-model"
+						placeholder="Fiesta"
+					/>
+					<label for="vehicle-colour">Colour</label>
+					<input
+						type="text"
+						name="vehicle-colour"
+						id="vehicle-colour"
+						placeholder="Blue"
+					/>
+					<label for="vehicle-colour">Owner Name</label>
+					<input
+						type="text"
+						name="vehicle-owner-name"
+						id="vehicle-owner-name"
+						placeholder="Jane Doe"
+					/>
+					<input type="submit" class="btn-primary" value="Register" />
+				</form>
+			</section>
+		</main>
+		<footer id="footer">
+			<section>
+				<p>&copy; Ben Bromley 2024</p>
+			</section>
+		</footer>
+	</body>
+
+	<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+	<script src="/app.js" type="module"></script>
+</html>
