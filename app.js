@@ -110,6 +110,27 @@ function renderVehicleCard(vehicle) {
 						</div>
 					</div>`;
 }
+
+// --- NEW VEHICLE ---
+
+const newVehicleForm = document.getElementById("new-vehicle-form");
+newVehicleForm?.addEventListener("submit", submitNewVehicle);
+
+async function submitNewVehicle(e) {
+	e.preventDefault();
+	const vehicleOwner = await findOrCreateOwner(
+		e.target["vehicle-owner-name"].value
+	);
+	const newVehicle = {
+		VehicleID: e.target["vehicle-registration"].value,
+		Make: e.target["vehicle-make"].value,
+		Model: e.target["vehicle-model"].value,
+		Colour: e.target["vehicle-colour"].value,
+		OwnerID: vehicleOwner.PersonID,
+	};
+	const { insertError } = await client.from("Vehicles").insert(newVehicle);
+}
+
 /**
  * When given a name, either find the first person with that name,
  * or create a new person recrod using that name
