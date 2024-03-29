@@ -27,13 +27,13 @@ body {
 }
 
 .btn-primary {
-		background-color: var(--bg-green);
-		color: var(--text-light);
-		font-weight: 700;
+	background-color: var(--bg-green);
+	color: var(--text-light);
+	font-weight: 700;
 }
-	
+
 .btn-primary:hover {
-		background-color: var(--bg-green-dark);
+	background-color: var(--bg-green-dark);
 }
 
 /* --- HEADER STYLES --- */
@@ -155,7 +155,7 @@ h2.content-header {
 	margin: 2rem 5rem 2rem;
 }
 
-form#create-new-vehicle {
+form#new-vehicle-form {
 	background: var(--bg-white);
 	padding: 2rem;
 	margin: 0 5rem 5rem;
@@ -165,17 +165,16 @@ form#create-new-vehicle {
 	gap: 1rem;
 }
 
-form#create-new-vehicle > * {
+form#new-vehicle-form > * {
 	align-self: center;
 }
 
-form#create-new-vehicle > input[type="submit"] {
+form#new-vehicle-form > input[type="submit"] {
 	margin-top: 1rem;
 	grid-column: span 2;
 }
 
-
-form#create-new-vehicle input {
+form#new-vehicle-form input {
 	padding: 10px;
 	border: none;
 	border-radius: 0.5rem;
