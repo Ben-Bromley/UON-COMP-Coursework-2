@@ -4,13 +4,11 @@ const client = supabase.createClient(
 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtZmlmdWJ1anl2cXhmamxqa2FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEyMDAxNzUsImV4cCI6MjAyNjc3NjE3NX0.Lb_ZhxquAbNseh1R2WylCjeT_KPC9D99Vqbf_Uz6LkI"
 );
 
+// --- PEOPLE SEARCH ---
+
 // Handle submission of people search form
 const peopleSearchForm = document.getElementById("people-search-form");
 peopleSearchForm?.addEventListener("submit", submitPeopleSearch);
-
-// Handle submission of vehicle search form
-const vehicleSearchForm = document.getElementById("vehicle-search-form");
-vehicleSearchForm?.addEventListener("submit", submitVehicleSearch);
 
 /**
  * Handle the submission of the "Search people" form,
@@ -26,7 +24,6 @@ async function submitPeopleSearch(e) {
 		.from("People")
 		.select()
 		.ilike("Name", `%${peopleSearchInput}%`);
-	console.log("Search Result: ", data);
 
 	if (!data?.length > 0) {
 		return (peopleResults.innerHTML = "<p>Person not found</p>");
@@ -41,7 +38,7 @@ async function submitPeopleSearch(e) {
 
 /**
  * Accepting a person record, return a HTML template displaying the given data
- * @param {*} person
+ * @param person
  * @returns
  */
 function renderPersonCard(person) {
@@ -59,6 +56,12 @@ function renderPersonCard(person) {
 						</div>
 					</div>`;
 }
+
+// --- VEHICLES SEARCH ---
+
+// Handle submission of vehicle search form
+const vehicleSearchForm = document.getElementById("vehicle-search-form");
+vehicleSearchForm?.addEventListener("submit", submitVehicleSearch);
 
 /**
  * Handle the submission of the "Search vehicles" form,
@@ -98,6 +101,11 @@ async function submitVehicleSearch(e) {
 		.join("");
 }
 
+/**
+ * Accepting a vehicle record, return a HTML template displaying the given data
+ * @param vehicle
+ * @returns
+ */
 function renderVehicleCard(vehicle) {
 	return `<div class="result-card">
 						<h3 class="result-card-title">${vehicle.VehicleID}</h3>
