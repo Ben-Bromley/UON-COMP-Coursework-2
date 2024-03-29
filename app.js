@@ -110,3 +110,29 @@ function renderVehicleCard(vehicle) {
 						</div>
 					</div>`;
 }
+
+/**
+ * When provided a name, retrieve the first People record with that name
+ * @param {string} name
+ * @returns Person record
+ */
+async function getPersonByName(name) {
+	const { data, error } = await client
+		.from("People")
+		.select()
+		.ilike("Name", `%${name}%`);
+	return data?.[0];
+}
+
+/**
+ * When provided with a name, create a new People record
+ * @param {string} name
+ * @returns Person object
+ */
+async function createPerson(name) {
+	const { data, error } = await client
+		.from("People")
+		.insert({ Name: name })
+		.select();
+	return data?.[0];
+}
