@@ -19,9 +19,8 @@ vehicleSearchForm?.addEventListener("submit", submitVehicleSearch);
  */
 async function submitPeopleSearch(e) {
 	e.preventDefault();
-	const peopleSearchInput = document.getElementById("name-search").value;
+	const peopleSearchInput = e.target["name-search"].value;
 	const peopleResults = document.getElementById("people-results");
-
 	peopleResults.innerHTML = "<p>Loading...</p>";
 	const { data, error } = await client
 		.from("People")
