@@ -67,7 +67,7 @@ function renderPersonCard(person) {
  */
 async function submitVehicleSearch(e) {
 	e.preventDefault();
-	const vehicleSearchInput = document.getElementById("vehicle-search").value;
+	const vehicleSearchInput = e.target["vehicle-search"].value;
 	const vehicleResults = document.getElementById("vehicle-results");
 
 	vehicleResults.innerHTML = "<p>Loading...</p>";
