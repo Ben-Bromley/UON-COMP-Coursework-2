@@ -110,6 +110,22 @@ function renderVehicleCard(vehicle) {
 						</div>
 					</div>`;
 }
+/**
+ * When given a name, either find the first person with that name,
+ * or create a new person recrod using that name
+ * @param {string} ownerName
+ * @returns Person record
+ */
+async function findOrCreateOwner(ownerName) {
+	if (!ownerName) throw new Error("Invalid owner name provided");
+
+	let owner = await getPersonByName(ownerName);
+	if (!owner) {
+		owner = await createPerson(ownerName);
+	}
+
+	return owner;
+}
 
 /**
  * When provided a name, retrieve the first People record with that name
