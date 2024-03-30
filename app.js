@@ -135,7 +135,11 @@ async function submitNewVehicle(e) {
 		Colour: e.target["vehicle-colour"].value,
 		OwnerID: vehicleOwner.PersonID,
 	};
-	const { insertError } = await client.from("Vehicles").insert(newVehicle);
+	const { error } = await client.from("Vehicles").insert(newVehicle);
+	if (error) {
+		e.target.innerHTML = "<div>Error submitting vehicle.</div>";
+	}
+	e.target.innerHTML = "<div>New Vehicle Created.</div>";
 }
 
 /**
