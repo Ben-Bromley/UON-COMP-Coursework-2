@@ -48,12 +48,28 @@ function renderPersonCard(person) {
 							<h3 class="result-card-title">${person.Name}</h3>
 							<div class="result-attributes">
 								<div class="attribute-group">
-									<p><span class="attribute-name">Address </span>${person.Address}</p>
-									<p><span class="attribute-name">DOB </span>${person.DOB}</p>
+									<p class="${
+										person.Address === null ? "attribute-missing" : ""
+									}"><span class="attribute-name">Address </span>${
+		person.Address ?? "missing"
+	}</p>
+									<p class="${
+										person.DOB === null ? "attribute-missing" : ""
+									}"><span class="attribute-name">DOB </span>${
+		person.DOB ?? "missing"
+	}</p>
 								</div>
 								<div class="attribute-group">
-									<p><span class="attribute-name">License </span>${person.LicenseNumber}</p>
-									<p><span class="attribute-name">Expires </span>${person.ExpiryDate}</p>
+									<p class="${
+										person.LicenseNumber === null ? "attribute-missing" : ""
+									}"><span class="attribute-name">License </span>${
+		person.LicenseNumber ?? "missing"
+	}</p>
+									<p class="${
+										person.ExpiryDate === null ? "attribute-missing" : ""
+									}"><span class="attribute-name">Expires </span>${
+		person.ExpiryDate ?? "missing"
+	}</p>
 								</div>
 							</div>
 						</div>
