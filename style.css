@@ -57,7 +57,7 @@ header#header h1#page-title {
 main#main-wrapper {
 	display: flex;
 	flex-wrap: wrap;
-	min-height: 85vh;
+	min-height: 80vh;
 }
 
 /* --- SIDEBAR NAVIGATIOIN --- */
@@ -66,6 +66,7 @@ aside#sidebar {
 	color: var(--text-primary-lighter);
 	padding: 2rem 3rem 2rem 0;
 	border-right: 1px solid var(--bg-light);
+	flex-grow: 1;
 }
 
 aside#sidebar h2#sidebar-title {
@@ -96,19 +97,21 @@ aside#sidebar nav ul li.navigation-link a:hover {
 
 section#content {
 	/* make sure the main content is much larger than sidebar */
-	flex-grow: 1;
+	flex-grow: 20;
 	background: var(--bg-light);
+	min-height: 50vh;
 }
 
 /* --- SEARCH FORM STYLES --- */
 section#content form.search-form {
 	background-color: var(--bg-white);
 	display: flex;
+	flex-wrap: wrap;
 	padding: 1rem 2rem;
 	position: relative;
 }
 
-section#content > form.search-form > div > .search-bar-icon {
+section#content > form.search-form > div.search-wrapper > .search-bar-icon {
 	width: 1rem;
 	height: 1rem;
 	position: absolute;
@@ -127,6 +130,8 @@ section#content > form.search-form > div.search-wrapper {
 	width: 100%;
 	display: flex;
 	align-items: center;
+	flex-basis: 36rem;
+	flex-grow: 10;
 }
 
 section#content > form.search-form > div.search-wrapper > input.search-input {
@@ -135,7 +140,9 @@ section#content > form.search-form > div.search-wrapper > input.search-input {
 
 section#content > form.search-form > input[type="submit"] {
 	margin: 0.5rem;
-	padding: 0 2rem;
+	padding: 1rem 3rem;
+	flex-grow: 1;
+	flex-basis: 30ch;
 }
 
 /* --- PERSON CARD STYLES --- */
@@ -191,6 +198,11 @@ h2.content-header {
 	margin-bottom: 2rem;
 	text-align: center;
 	color: var(--bg-primary);
+}
+
+#new-vehicle-form-wrapper {
+	max-width: 80ch;
+	margin: 0 auto;
 }
 
 form#new-vehicle-form {
