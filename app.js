@@ -43,15 +43,18 @@ async function submitPeopleSearch(e) {
  */
 function renderPersonCard(person) {
 	return `<div class="result-card">
-						<h3 class="result-card-title">${person.Name}</h3>
-						<div class="result-attributes">
-							<div class="attribute-group">
-								<p><span class="attribute-name">Address: </span>${person.Address}</p>
-								<p><span class="attribute-name">DOB: </span>${person.DOB}</p>
-							</div>
-							<div class="attribute-group">
-								<p><span class="attribute-name">License: </span>${person.LicenseNumber}</p>
-								<p><span class="attribute-name">Expires: </span>${person.ExpiryDate}</p>
+						<img class="result-card-icon" src="assets/user.svg" alt="User Profile Template" />
+						<div class="result-card-content">
+							<h3 class="result-card-title">${person.Name}</h3>
+							<div class="result-attributes">
+								<div class="attribute-group">
+									<p><span class="attribute-name">Address </span>${person.Address}</p>
+									<p><span class="attribute-name">DOB </span>${person.DOB}</p>
+								</div>
+								<div class="attribute-group">
+									<p><span class="attribute-name">License </span>${person.LicenseNumber}</p>
+									<p><span class="attribute-name">Expires </span>${person.ExpiryDate}</p>
+								</div>
 							</div>
 						</div>
 					</div>`;
@@ -108,11 +111,14 @@ async function submitVehicleSearch(e) {
  */
 function renderVehicleCard(vehicle) {
 	return `<div class="result-card">
-						<h3 class="result-card-title">${vehicle.VehicleID}</h3>
-						<div class="result-attributes">
-							<div class="attribute-group">
-								<p><span class="attribute-name">Car: </span>${vehicle.Colour} ${vehicle.Make} ${vehicle.Model}</p>
-								<p><span class="attribute-name">Owner: </span>${vehicle.People.Name}</p>
+						<img class="result-card-icon" src="assets/car.svg" alt="Car Icon" />
+						<div class="result-card-content">
+							<h3 class="result-card-title">${vehicle.VehicleID}</h3>
+							<div class="result-attributes">
+								<div class="attribute-group">
+									<p><span class="attribute-name">Car: </span>${vehicle.Colour} ${vehicle.Make} ${vehicle.Model}</p>
+									<p><span class="attribute-name">Owner: </span>${vehicle.People.Name}</p>
+								</div>
 							</div>
 						</div>
 					</div>`;

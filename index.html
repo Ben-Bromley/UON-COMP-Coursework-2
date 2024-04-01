@@ -8,13 +8,12 @@
 	</head>
 	<body>
 		<header id="header">
-			<h1 id="page-title">COMP1004 Database Lookup</h1>
+			<h1 id="page-title">CarDB</h1>
 		</header>
 		<main id="main-wrapper">
 			<aside id="sidebar">
 				<nav>
-					<h2 id="sidebar-title">Navigation</h2>
-					<hr class="hr" />
+					<h2 id="sidebar-title">Search</h2>
 					<ul>
 						<li class="navigation-link active">
 							<a href="/">People Directory</a>
@@ -23,22 +22,36 @@
 							<a href="vehicles.html">Vehicles Directory</a>
 						</li>
 						<li class="navigation-link">
-							<a href="new-vehicle.html">New Vehicle</a>
+							<a href="incidents.html">Incident Reports</a>
+						</li>
+					</ul>
+					<h2 id="sidebar-title">New</h2>
+					<ul>
+						<li class="navigation-link">
+							<a href="new-vehicle.html">Register Vehicle</a>
 						</li>
 						<li class="navigation-link">
-							<a href="incident-report.html">Incident Report</a>
+							<a href="report-incident.html">Report Incident</a>
 						</li>
 					</ul>
 				</nav>
 			</aside>
 			<section id="content">
 				<form id="people-search-form" class="search-form">
-					<input
-						type="text"
-						name="search"
-						id="name-search"
-						placeholder="John Smith"
-					/>
+					<div class="search-wrapper">
+						<img
+							src="assets/search.svg"
+							alt="Search Icon"
+							class="search-bar-icon"
+						/>
+						<input
+							type="text"
+							name="search"
+							id="name-search"
+							class="search-input"
+							placeholder="John Smith"
+						/>
+					</div>
 					<input
 						type="submit"
 						id="name-search-submit"

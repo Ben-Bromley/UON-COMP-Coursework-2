@@ -1,76 +1,76 @@
 /* set up some CSS variables to use throughout the application */
 :root {
-	--bg-green: #1a936f;
-	--bg-green-hover: #147558;
-	--bg-green-dark: #0f543f;
-	--bg-green-darker: #0b3d2e;
-	--bg-light: #dbd9db;
-	--bg-white: #edeced;
+	--bg-primary: #27474e;
+	--bg-primary-lighter: #3c6d78;
+	--text-primary: #27474e;
+	--text-primary-lighter: #3c6d78;
+
+	--bg-light: #d6e5e8;
+	--bg-white: #ffffff;
 	--text-light: #e7e4e7;
-	--text-light-hover: #dbd9db;
+	--text-gray: #aeaeae;
+}
+
+html {
+	background-color: var(--bg-primary);
 }
 
 /* use Verdana instead of default serif font */
 body * {
 	box-sizing: border-box;
 	font-family: verdana;
-	transition: all 0.2s ease;
+	transition: all 0.1s ease;
 }
 
 body {
 	margin: 0px;
-	height: 100vh;
-	max-height: 100vh;
-	overflow: hidden;
+	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 }
 
 .btn-primary {
-	background-color: var(--bg-green);
+	background-color: var(--bg-primary);
 	color: var(--text-light);
 	font-weight: 700;
 }
 
 .btn-primary:hover {
-	background-color: var(--bg-green-dark);
+	background-color: var(--bg-primary-lighter);
 }
 
 /* --- HEADER STYLES --- */
 header#header {
-	background: var(--bg-green-dark);
+	background: var(--bg-primary);
 	display: flex;
 	align-items: center;
-	padding: 20px;
-	height: 10vh;
+	padding: 1rem;
 }
 
 header#header h1#page-title {
-	margin: 0px;
+	margin: 0px auto;
 	color: var(--text-light);
+	font-size: 1rem;
 }
 
 /* --- MAIN BODY --- */
 main#main-wrapper {
 	display: flex;
 	flex-wrap: wrap;
-	height: 85vh;
+	min-height: 85vh;
 }
 
 /* --- SIDEBAR NAVIGATIOIN --- */
 aside#sidebar {
-	flex-grow: 1;
-	background: var(--bg-green);
-	color: var(--bg-light);
+	background: var(--bg-white);
+	color: var(--text-primary-lighter);
+	padding: 2rem 3rem 2rem 0;
+	border-right: 1px solid var(--bg-light);
 }
 
 aside#sidebar h2#sidebar-title {
+	font-size: 0.8rem;
 	padding: 20px 60px 0px 30px;
-}
-
-hr.hr {
-	color: var(--text-light-hover);
-	margin: 30px 20px 20px 20px;
 }
 
 aside#sidebar nav ul {
@@ -81,92 +81,137 @@ aside#sidebar nav ul {
 aside#sidebar nav ul li.navigation-link {
 	list-style: none;
 	width: 100%;
+	margin: 1rem 2rem;
+	font-size: 1rem;
 }
 
 aside#sidebar nav ul li.navigation-link a {
-	color: var(--text-light);
+	color: var(--text-gray);
 	text-decoration: none;
-	display: block;
-	padding: 20px 50px 20px 30px;
 }
 
-aside#sidebar nav ul li.navigation-link a:hover,
-aside#sidebar nav ul li.navigation-link.active a {
-	color: var(--text-light-hover);
-	background-color: var(--bg-green-hover);
+aside#sidebar nav ul li.navigation-link a:hover {
+	color: var(--text-primary-lighter);
 }
 
 section#content {
 	/* make sure the main content is much larger than sidebar */
-	flex-grow: 5;
+	flex-grow: 1;
 	background: var(--bg-light);
-	min-width: 60ch;
 }
 
 /* --- SEARCH FORM STYLES --- */
-section#content > form.search-form {
+section#content form.search-form {
 	background-color: var(--bg-white);
 	display: flex;
-	flex-direction: column;
-	padding: 2rem 6rem;
-	z-index: 2;
-	border-bottom: 2px solid var(--bg-green);
+	padding: 1rem 2rem;
+	position: relative;
 }
 
-section#content > form.search-form > input {
-	padding: 10px;
+section#content > form.search-form > div > .search-bar-icon {
+	width: 1rem;
+	height: 1rem;
+	position: absolute;
+	margin-left: 1rem;
+}
+
+section#content > form.search-form input {
+	padding: 1rem 1rem 1rem 3rem;
 	border: none;
-	border-radius: 0.5rem;
-	flex-grow: 1;
+	border-radius: 0.3rem;
+}
+
+section#content > form.search-form > div.search-wrapper {
+	border: 1px solid var(--bg-light);
 	margin: 0.5rem;
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+section#content > form.search-form > div.search-wrapper > input.search-input {
+	width: 100%;
+}
+
+section#content > form.search-form > input[type="submit"] {
+	margin: 0.5rem;
+	padding: 0 2rem;
 }
 
 /* --- PERSON CARD STYLES --- */
 section.search-results {
-	max-height: 70%;
-	overflow: scroll;
 	margin: 0 1rem;
 	padding: 2rem 5rem;
-	z-index: 1;
 }
 
 .result-card {
 	background-color: var(--bg-white);
-	margin: 10px;
-	padding: 20px;
+	color: var(--text-primary);
+	margin: 1rem auto;
+	max-width: 60ch;
 	border-radius: 0.5rem;
+	display: flex;
+	align-items: center;
 }
 
-.result-card > h3.result-card-title {
-	margin: 0;
+.result-card > img.result-card-icon {
+	border: 5px solid var(--bg-primary-lighter);
+	border-radius: 50%;
+	width: 9rem;
+	height: 9rem;
+	margin: 2rem;
+}
+
+.result-card h3.result-card-title {
+	color: var(--bg-primary-lighter);
+	margin-block-start: 0;
+	margin-block-end: 0;
+	font-size: 1.6rem;
 }
 
 .result-card .result-attributes {
 	display: flex;
-	gap: 4rem;
+	gap: 3rem;
 }
 
 .result-card span.attribute-name {
-	font-weight: bold;
+	color: var(--text-primary-lighter);
+	font-weight: 700;
+	font-size: 0.8rem;
+	display: block;
 }
 
 /* --- NEW VEHICLE FORM STYLES --- */
 h2.content-header {
-	margin: 2rem 5rem 2rem;
+	margin-top: 4rem;
+	margin-bottom: 2rem;
+	text-align: center;
+	color: var(--bg-primary);
 }
 
 form#new-vehicle-form {
 	background: var(--bg-white);
+	color: var(--bg-primary-lighter);
+	font-weight: 700;
 	padding: 2rem;
 	margin: 0 5rem 5rem;
-	border-radius: 0.5rem;
+	border-radius: 0.3rem;
 	display: grid;
-	grid-template-columns: 1fr 2fr;
+	grid-template-columns: 1fr 3fr;
 	gap: 1rem;
 }
 
 form#new-vehicle-form > * {
 	align-self: center;
+}
+
+form#new-vehicle-form > input[type="text"]::placeholder {
+	color: var(--text-gray);
+}
+
+form#new-vehicle-form > input[type="text"] {
+	border: 1px solid var(--bg-light);
+	color: var(--text-primary-lighter);
 }
 
 form#new-vehicle-form > input[type="submit"] {
@@ -175,18 +220,17 @@ form#new-vehicle-form > input[type="submit"] {
 }
 
 form#new-vehicle-form input {
-	padding: 10px;
+	padding: 1rem;
 	border: none;
-	border-radius: 0.5rem;
+	border-radius: 0.3rem;
 }
 
 /* --- FOOTER STYLES --- */
 
 footer#footer {
-	background: var(--bg-green-dark);
+	background: var(--bg-primary);
 	color: var(--text-light);
-	padding: 5px;
-	font-size: 0.8rem;
+	padding: 1rem;
+	font-size: 1rem;
 	text-align: center;
-	height: 5vh;
 }
