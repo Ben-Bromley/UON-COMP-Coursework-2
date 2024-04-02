@@ -4,7 +4,8 @@ A front-end interface that queries a supabase backend.
 
 ## README Requirements
 
-1. The URL to the GitHub Page where the front end is hosted.
+1. The URL to the GitHub Page where the front end is hosted
+   - [ben-bromley.github.io/UON-COMP1004-Coursework-2](https://ben-bromley.github.io/UON-COMP1004-Coursework-2/)
    - This is the version that will be used for marking, so please make sure it is working.
      Please do not make any further changes after the submission, otherwise it will be considered
      as late submission (using the last commit date/time).
