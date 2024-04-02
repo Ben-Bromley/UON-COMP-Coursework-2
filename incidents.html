@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>COMP1004/2 | Home</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header id="header">
+			<h1 id="page-title">CarDB</h1>
+		</header>
+		<main id="main-wrapper">
+			<aside id="sidebar">
+				<nav>
+					<h2 id="sidebar-title">Search</h2>
+					<ul>
+						<li class="navigation-link active">
+							<a href="/">People Directory</a>
+						</li>
+						<li class="navigation-link">
+							<a href="vehicles.html">Vehicles Directory</a>
+						</li>
+						<li class="navigation-link">
+							<a href="incidents.html">Incident Reports</a>
+						</li>
+					</ul>
+					<h2 id="sidebar-title">New</h2>
+					<ul>
+						<li class="navigation-link">
+							<a href="new-vehicle.html">Register Vehicle</a>
+						</li>
+						<li class="navigation-link">
+							<a href="report-incident.html">Report Incident</a>
+						</li>
+					</ul>
+				</nav>
+			</aside>
+			<section id="content">
+				<form id="incident-search-form" class="search-form">
+					<div class="search-wrapper">
+						<img
+							src="assets/search.svg"
+							alt="Search Icon"
+							class="search-bar-icon"
+						/>
+						<input
+							type="text"
+							name="search"
+							id="incident-search"
+							class="search-input"
+						/>
+					</div>
+					<input
+						type="submit"
+						id="incident-search-submit"
+						class="btn-primary"
+						value="Search Incidents"
+					/>
+				</form>
+				<section id="incidents-results" class="search-results"></section>
+			</section>
+		</main>
+		<footer id="footer">
+			<section>
+				<p>&copy; Ben Bromley 2024</p>
+			</section>
+		</footer>
+	</body>
+
+	<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+	<script src="app.js" type="module"></script>
+</html>

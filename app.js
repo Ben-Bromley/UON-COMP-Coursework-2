@@ -206,3 +206,69 @@ async function createPerson(name) {
 		.select();
 	return data?.[0];
 }
+
+document
+	.getElementById("incident-search-form")
+	?.addEventListener("submit", submitIncidentSearch);
+
+async function submitIncidentSearch(e) {
+	e.preventDefault();
+	const registration = e.target["incident-search"].value;
+	const incidentResults = document.getElementById("incidents-results");
+	incidentResults.innerHTML = "<p>Loading...</p>";
+	const fines = await getFineByVehicleID(registration);
+
+	if (!fines?.length > 0) {
+		incidentResults.innerHTML = "<p>No Incidents Recorded</p>";
+		return;
+	}
+
+	incidentResults.innerHTML = fines
+		.map((incident) => renderIncidentCard(incident))
+		.join("");
+	console.log(fines);
+}
+
+async function getFineByVehicleID(registration) {
+	const { data, error } = await client
+		.from("Fines")
+		.select(
+			`
+			VehicleID,
+			Time,
+			OffenceID,
+			PersonID,
+			Amount,
+			OfficerStatement,
+			People (
+				Name
+			)
+		`
+		)
+		.ilike("VehicleID", `%${registration}%`);
+	return data;
+}
+
+/**
+ * Accepting a incident record, return a HTML template displaying the given data
+ * @param incident
+ * @returns
+ */
+function renderIncidentCard(incident) {
+	return `<div class="result-card">
+						<img class="result-card-icon" src="assets/car.svg" alt="User Profile Template" />
+						<div class="result-card-content">
+							<h3 class="result-card-title">${incident.VehicleID}</h3>
+							<div class="result-attributes">
+								<div class="attribute-group">
+									<p class=""><span class="attribute-name">Offender </span>${incident.People?.Name}</p>
+									<p class=""><span class="attribute-name">Date </span>${incident.Time}</p>
+								</div>
+								<div class="attribute-group">
+									<p class=""><span class="attribute-name">Fine </span>£${incident.Amount}</p>
+									<p class=""><span class="attribute-name">Statement </span>${incident.OfficerStatement}</p>
+								</div>
+							</div>
+						</div>
+					</div>`;
+}
