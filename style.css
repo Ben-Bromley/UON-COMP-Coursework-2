@@ -156,6 +156,7 @@ section.search-results {
 	color: var(--text-primary);
 	margin: 1rem auto;
 	max-width: 60ch;
+	padding-right: 1.4rem;
 	border-radius: 0.5rem;
 	display: flex;
 	align-items: center;
