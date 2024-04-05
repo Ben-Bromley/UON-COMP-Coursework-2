@@ -317,6 +317,7 @@ async function buildVehicleSelect() {
 			vehicleAttributes.forEach((attribute) => {
 				attribute.input.disabled = true;
 				attribute.input.value = currentVehicle[attribute.key];
+				// don't show a placeholder value here, in case a user has missing attributes and it looks confusing
 				attribute.input.placeholder = '';
 			});
 		}
@@ -362,6 +363,7 @@ async function buildPeopleSelect() {
 			})[0];
 			personAttributes.forEach((attribute) => {
 				attribute.input.value = currentPerson[attribute.key] || "";
+				// don't show a placeholder value here, in case a user has missing attributes and it looks confusing
 				attribute.input.placeholder = '';
 				attribute.input.disabled = true;
 			});
