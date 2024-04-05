@@ -229,6 +229,11 @@ async function submitIncidentSearch(e) {
 	console.log(fines);
 }
 
+/**
+ * Return a list of fines corresponding to the given VehicleID / registration
+ * @param {string} registration
+ * @returns
+ */
 async function getFineByVehicleID(registration) {
 	const { data, error } = await client
 		.from("Fines")
@@ -272,3 +277,95 @@ function renderIncidentCard(incident) {
 						</div>
 					</div>`;
 }
+
+async function buildVehicleSelect() {
+	const { data, error } = await client.from("Vehicles").select();
+	const incidentReportSelect = document.getElementById(
+		"incident-report-vehicle"
+	);
+
+	// add hardcoded option to input new vehicle data
+	incidentReportSelect.innerHTML =
+		'<option value="new-vehicle">+ New Vehicle</option>';
+
+	incidentReportSelect.innerHTML += data.map((vehicle) => {
+		return `<option value="${vehicle.VehicleID}">${vehicle.VehicleID}</option>`;
+	});
+
+	// create a list of the inputs for the car attributes
+	const vehicleAttributes = ["Make", "Model", "Colour"].map((attr) => {
+		return {
+			input: document.getElementById(`vehicle-${attr.toLowerCase()}`),
+			key: attr,
+		};
+	});
+
+	incidentReportSelect.addEventListener("change", (e) => {
+		if (e.target.value === "new-vehicle") {
+			// empty the attributes and enable them
+			vehicleAttributes.forEach((attribute) => {
+				attribute.input.disabled = false;
+				attribute.input.value = "";
+			});
+		} else {
+			// get selected vehicle and fill attributes
+			const currentVehicle = data.filter((vehicle) => {
+				return vehicle.VehicleID === e.target.value;
+			})[0];
+			vehicleAttributes.forEach((attribute) => {
+				attribute.input.disabled = true;
+				attribute.input.value = currentVehicle[attribute.key];
+				attribute.input.placeholder = '';
+			});
+		}
+	});
+}
+
+async function buildPeopleSelect() {
+	const { data, error } = await client.from("People").select();
+	const incidentReportSelect = document.getElementById(
+		"incident-report-person"
+	);
+
+	incidentReportSelect.innerHTML =
+		'<option value="new-person">+ New Person</option>';
+
+	incidentReportSelect.innerHTML += data.map((person) => {
+		return `<option value="${person.PersonID}">${person.Name}</option>`;
+	});
+
+	// create a list of the inputs for the persons attributes
+	const personAttributes = ["Name", "DOB", "Address", "ExpiryDate"].map(
+		(attr) => {
+			return {
+				input: document.getElementById(`vehicle-owner-${attr.toLowerCase()}`),
+				key: attr,
+			};
+		}
+	);
+
+	incidentReportSelect.addEventListener("change", (e) => {
+		if (e.target.value === "new-person") {
+			// empty the attributes and enable them
+			personAttributes.forEach((attribute) => {
+				attribute.input.disabled = false;
+				attribute.input.value = "";
+			});
+		} else {
+			// get selected person and fill attributes
+			const currentPerson = data.filter((person) => {
+				return parseInt(person.PersonID) === parseInt(e.target.value);
+			})[0];
+			personAttributes.forEach((attribute) => {
+				attribute.input.value = currentPerson[attribute.key] || "";
+				attribute.input.placeholder = '';
+				attribute.input.disabled = true;
+			});
+		}
+	});
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+	buildVehicleSelect();
+	buildPeopleSelect();
+});
