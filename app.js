@@ -284,6 +284,8 @@ async function buildVehicleSelect() {
 		"incident-report-vehicle"
 	);
 
+	if (!incidentReportSelect) return;
+
 	// add hardcoded option to input new vehicle data
 	incidentReportSelect.innerHTML =
 		'<option value="new-vehicle">+ New Vehicle</option>';
@@ -326,6 +328,8 @@ async function buildPeopleSelect() {
 	const incidentReportSelect = document.getElementById(
 		"incident-report-person"
 	);
+
+	if (!incidentReportSelect) return;
 
 	incidentReportSelect.innerHTML =
 		'<option value="new-person">+ New Person</option>';
