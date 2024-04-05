@@ -91,6 +91,7 @@ aside#sidebar nav ul li.navigation-link a {
 	text-decoration: none;
 }
 
+aside#sidebar nav ul li.navigation-link.active a,
 aside#sidebar nav ul li.navigation-link a:hover {
 	color: var(--text-primary-lighter);
 }
