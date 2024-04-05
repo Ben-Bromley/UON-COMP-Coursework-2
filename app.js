@@ -371,7 +371,27 @@ async function buildPeopleSelect() {
 	});
 }
 
+/**
+ * Retrieving a list of offences from the database, display them in the <select>
+ */
+async function buildOffencesSelect() {
+	const { data, error } = await client.from("Offences").select();
+	const incidentReportSelect = document.getElementById(
+		"incident-report-offence"
+	);
+
+	if (!incidentReportSelect) return;
+
+	incidentReportSelect.innerHTML =
+		'<option disabled selected>Select Offence</option>';
+
+	incidentReportSelect.innerHTML += data.map((offence) => {
+		return `<option value="${offence.OffenceID}">${offence.Description}</option>`;
+	});
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 	buildVehicleSelect();
 	buildPeopleSelect();
+	buildOffencesSelect();
 });

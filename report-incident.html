@@ -122,22 +122,28 @@
 						/>
 						<!-- INCIDENT DETAILS -->
 						<h3 class="form-subheader">Incident</h3>
+						<label for="incident-report-offence">Offence</label>
+						<select
+							name="incident-report-offence"
+							id="incident-report-offence"
+							required="true"
+						></select>
 						<label for="incident-statement">Statement</label>
 						<textarea
-						name="incident-statement"
-						id="incident-statement"
-						required="true"
-						minlength="2"
-						maxlength="128"
-						rows="3"
-						placeholder="Please concisely describe the incident..."
+							name="incident-statement"
+							id="incident-statement"
+							required="true"
+							minlength="2"
+							maxlength="128"
+							rows="3"
+							placeholder="Please concisely describe the incident..."
 						></textarea>
 						<label for="incident-date">Date</label>
 						<input
-						type="date"
-						name="incident-date"
-						id="incident-date"
-						required="true"
+							type="date"
+							name="incident-date"
+							id="incident-date"
+							required="true"
 						/>
 						<input type="submit" class="btn-primary" value="Submit Report" />
 					</form>
