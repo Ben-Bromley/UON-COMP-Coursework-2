@@ -29,10 +29,17 @@ body {
 	flex-direction: column;
 }
 
+textarea {
+	resize: none;
+}
+
 .btn-primary {
 	background-color: var(--bg-primary);
 	color: var(--text-light);
 	font-weight: 700;
+	padding: 1rem;
+	border: none;
+	border-radius: 0.3rem;
 }
 
 .btn-primary:hover {
@@ -202,12 +209,12 @@ h2.content-header {
 	color: var(--bg-primary);
 }
 
-#new-vehicle-form-wrapper {
+.new-record-form-wrapper {
 	max-width: 80ch;
 	margin: 0 auto;
 }
 
-form#new-vehicle-form {
+form.new-record-form {
 	background: var(--bg-white);
 	color: var(--bg-primary-lighter);
 	font-weight: 700;
@@ -219,28 +226,32 @@ form#new-vehicle-form {
 	gap: 1rem;
 }
 
-form#new-vehicle-form > * {
+form.new-record-form .form-subheader {
+	grid-column: span 2;
+}
+
+form.new-record-form > * {
 	align-self: center;
 }
 
-form#new-vehicle-form > input[type="text"]::placeholder {
+form.new-record-form > input::placeholder {
 	color: var(--text-gray);
 }
 
-form#new-vehicle-form > input[type="text"] {
+form.new-record-form > textarea,
+form.new-record-form > select,
+form.new-record-form input {
+	padding: 1rem;
+	border-radius: 0.3rem;
 	border: 1px solid var(--bg-light);
 	color: var(--text-primary-lighter);
 }
 
-form#new-vehicle-form > input[type="submit"] {
+form.new-record-form > input[type="submit"] {
+	border: none;
 	margin-top: 1rem;
 	grid-column: span 2;
-}
-
-form#new-vehicle-form input {
-	padding: 1rem;
-	border: none;
-	border-radius: 0.3rem;
+	color: var(--text-light);
 }
 
 /* --- FOOTER STYLES --- */
