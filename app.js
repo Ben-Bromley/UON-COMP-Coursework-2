@@ -164,6 +164,8 @@ async function submitNewVehicle(e) {
 	e.target.innerHTML = "<div>New Vehicle Created.</div>";
 }
 
+// --- HELPERS ---
+
 /**
  * When given a name, either find the first person with that name,
  * or create a new person recrod using that name
@@ -278,6 +280,9 @@ function renderIncidentCard(incident) {
 					</div>`;
 }
 
+/**
+ * Retrieving a list of vehicles from the database, display them in the <select>
+ */
 async function buildVehicleSelect() {
 	const { data, error } = await client.from("Vehicles").select();
 	const incidentReportSelect = document.getElementById(
@@ -295,12 +300,16 @@ async function buildVehicleSelect() {
 	});
 
 	// create a list of the inputs for the car attributes
-	const vehicleAttributes = ["Make", "Model", "Colour"].map((attr) => {
+	const vehicleAttributes = ["VehicleID", "Make", "Model", "Colour"].map(
+		(attr) => {
 		return {
-			input: document.getElementById(`vehicle-${attr.toLowerCase()}`),
+				input: document.getElementById(
+					`incident-vehicle-${attr.toLowerCase()}`
+				),
 			key: attr,
 		};
-	});
+		}
+	);
 
 	incidentReportSelect.addEventListener("change", (e) => {
 		if (e.target.value === "new-vehicle") {
@@ -318,12 +327,15 @@ async function buildVehicleSelect() {
 				attribute.input.disabled = true;
 				attribute.input.value = currentVehicle[attribute.key];
 				// don't show a placeholder value here, in case a user has missing attributes and it looks confusing
-				attribute.input.placeholder = '';
+				attribute.input.placeholder = "";
 			});
 		}
 	});
 }
 
+/**
+ * Retrieving a list of people from the database, display them in the <select>
+ */
 async function buildPeopleSelect() {
 	const { data, error } = await client.from("People").select();
 	const incidentReportSelect = document.getElementById(
@@ -364,7 +376,7 @@ async function buildPeopleSelect() {
 			personAttributes.forEach((attribute) => {
 				attribute.input.value = currentPerson[attribute.key] || "";
 				// don't show a placeholder value here, in case a user has missing attributes and it looks confusing
-				attribute.input.placeholder = '';
+				attribute.input.placeholder = "";
 				attribute.input.disabled = true;
 			});
 		}
@@ -383,7 +395,7 @@ async function buildOffencesSelect() {
 	if (!incidentReportSelect) return;
 
 	incidentReportSelect.innerHTML =
-		'<option disabled selected>Select Offence</option>';
+		"<option disabled selected value>Select Offence</option>";
 
 	incidentReportSelect.innerHTML += data.map((offence) => {
 		return `<option value="${offence.OffenceID}">${offence.Description}</option>`;

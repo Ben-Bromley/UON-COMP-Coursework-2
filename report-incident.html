@@ -41,38 +41,47 @@
 				<div class="new-record-form-wrapper">
 					<form id="new-incident-form" class="new-record-form">
 						<!-- VEHICLE DETAILS -->
-						<h3 class="form-subheader">Vehicle</h3>
-						<label for="incident-report-vehicle">Registration</label>
+						<label for="incident-report-vehicle">Vehicle</label>
 						<select
 							name="incident-report-vehicle"
 							id="incident-report-vehicle"
 							required
 						></select>
-						<label for="vehicle-make">Make</label>
+						<label for="incident-vehicle-vehicleid">Registration</label>
 						<input
 							type="text"
-							name="vehicle-make"
-							id="vehicle-make"
+							name="incident-vehicle-vehicleid"
+							id="incident-vehicle-vehicleid"
+							placeholder="SG205FS"
+							required="true"
+							minlength="2"
+							maxlength="32"
+						/>
+						<label for="incident-vehicle-make">Make</label>
+						<input
+							type="text"
+							name="incident-vehicle-make"
+							id="incident-vehicle-make"
 							placeholder="Ford"
 							required="true"
 							minlength="2"
 							maxlength="32"
 						/>
-						<label for="vehicle-model">Model</label>
+						<label for="incident-vehicle-model">Model</label>
 						<input
 							type="text"
-							name="vehicle-model"
-							id="vehicle-model"
+							name="incident-vehicle-model"
+							id="incident-vehicle-model"
 							placeholder="Fiesta"
 							required="true"
 							minlength="2"
 							maxlength="128"
 						/>
-						<label for="vehicle-colour">Colour</label>
+						<label for="incident-vehicle-colour">Colour</label>
 						<input
 							type="text"
-							name="vehicle-colour"
-							id="vehicle-colour"
+							name="incident-vehicle-colour"
+							id="incident-vehicle-colour"
 							placeholder="Blue"
 							required="true"
 							minlength="2"
@@ -85,7 +94,7 @@
 							name="incident-report-person"
 							id="incident-report-person"
 						></select>
-						<label for="vehicle-colour">Name</label>
+						<label for="vehicle-owner-name">Name</label>
 						<input
 							type="text"
 							name="vehicle-owner-name"
@@ -113,7 +122,7 @@
 							minlength="2"
 							maxlength="128"
 						/>
-						<label for="vehicle-colour">License Expiry</label>
+						<label for="vehicle-owner-expirydate">License Expiry</label>
 						<input
 							type="date"
 							name="vehicle-owner-expirydate"
@@ -128,21 +137,21 @@
 							id="incident-report-offence"
 							required="true"
 						></select>
-						<label for="incident-statement">Statement</label>
+						<label for="incident-report-statement">Statement</label>
 						<textarea
-							name="incident-statement"
-							id="incident-statement"
+							name="incident-report-statement"
+							id="incident-report-statement"
 							required="true"
 							minlength="2"
 							maxlength="128"
 							rows="3"
 							placeholder="Please concisely describe the incident..."
 						></textarea>
-						<label for="incident-date">Date</label>
+						<label for="incident-report-date">Date</label>
 						<input
 							type="date"
-							name="incident-date"
-							id="incident-date"
+							name="incident-report-date"
+							id="incident-report-date"
 							required="true"
 						/>
 						<input type="submit" class="btn-primary" value="Submit Report" />
