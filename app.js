@@ -314,12 +314,12 @@ async function buildVehicleSelect() {
 	// create a list of the inputs for the car attributes
 	const vehicleAttributes = ["VehicleID", "Make", "Model", "Colour"].map(
 		(attr) => {
-		return {
+			return {
 				input: document.getElementById(
 					`incident-vehicle-${attr.toLowerCase()}`
 				),
-			key: attr,
-		};
+				key: attr,
+			};
 		}
 	);
 
@@ -412,6 +412,134 @@ async function buildOffencesSelect() {
 	incidentReportSelect.innerHTML += data.map((offence) => {
 		return `<option value="${offence.OffenceID}">${offence.Description}</option>`;
 	});
+}
+
+document
+	.getElementById("new-incident-form")
+	?.addEventListener("submit", handleSubmitIncident);
+
+/**
+ * When the incident report form is submitted, create the relevant database entries
+ */
+async function handleSubmitIncident(e) {
+	e.preventDefault();
+
+	// If there's a vehicle ID, use that
+	let incidentVehicleID = e.target["incident-report-vehicle"].value;
+	if (!incidentVehicleID || incidentVehicleID === "new-vehicle") {
+		console.log("creating new vehicle record 🚙");
+		// If not, create a new vehicle record with the given details
+		const newVehicle = await createVehicle(
+			e.target["incident-vehicle-id"],
+			e.target["incident-vehicle-make"],
+			e.target["incident-vehicle-model"],
+			e.target["incident-vehicle-colour"]
+		);
+		// and use the new ID
+		incidentVehicleID = newVehicle.VehicleID;
+	}
+
+	// If there's a person ID, use that
+	let incidentPersonID = e.target["incident-report-person"].value;
+	if (!incidentPersonID || incidentPersonID === "new-person") {
+		// If not, create a new person record with the given details
+		const newPerson = await createPerson(e.target[""]);
+		// and use the new ID
+		incidentPersonID = newPerson.PersonID;
+	}
+
+	// get other values from form
+	const incidentOffenceId = e.target["incident-report-offence"].value;
+	const incidentStatement = e.target["incident-report-statement"].value;
+	const incidentDate = e.target["incident-report-date"].value;
+
+	// insert all the data
+	const error = await createCommitment(incidentOffenceId, incidentPersonID);
+	if (error) {
+		console.error("Failed To Register Commitment - ", error);
+		return;
+	}
+
+	const newFine = await createFine(
+		incidentVehicleID,
+		incidentDate,
+		incidentOffenceId,
+		incidentPersonID,
+		incidentStatement
+	);
+	if (!newFine) {
+		console.error("Error filing report");
+		return;
+	}
+
+	console.log("Incident reported successfully!");
+	return;
+}
+
+/**
+ * When given a list of vehicle attributes, insert a new record into the Vehicles table, with those attributes
+ * @param {number} VehicleID
+ * @param {string} VehicleMake
+ * @param {string} VehicleModel
+ * @param {string} VehicleColour
+ * @returns The newly created vehicle record
+ */
+async function createVehicle(
+	VehicleID,
+	VehicleMake,
+	VehicleModel,
+	VehicleColour
+) {
+	const { data, error } = await client
+		.from("Vehicles")
+		.insert({
+			VehicleID: VehicleID,
+			Make: VehicleMake,
+			Model: VehicleModel,
+			Colour: VehicleColour,
+		})
+		.select();
+	return data?.[0];
+}
+
+/**
+ * Create a record in the Commitment table
+ * @param {number} PersonID the ID of the offender
+ * @param {number} OffenceID the ID of the offence
+ * @returns an error message or null
+ */
+async function createCommitment(OffenceID, PersonID) {
+	const { error } = await client.from("Commitment").insert({
+		PersonID,
+		OffenceID,
+	});
+	return error || null;
+}
+
+/**
+ * Create a fine record when given a
+ * @param {number} VehicleID
+ * @param {string} Time
+ * @param {number} OffenceID
+ * @param {number} PersonID
+ * @param {string} OfficerStatement
+ * @returns The fine record
+ */
+async function createFine(
+	VehicleID,
+	Time,
+	OffenceID,
+	PersonID,
+	OfficerStatement
+) {
+	const { data, error } = await client.from("Fines").insert({
+		VehicleID,
+		Time,
+		OffenceID,
+		PersonID,
+		OfficerStatement,
+	});
+	return data?.[0];
 }
 
 document.addEventListener("DOMContentLoaded", () => {
