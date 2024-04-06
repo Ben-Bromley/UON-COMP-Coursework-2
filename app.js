@@ -201,10 +201,22 @@ async function getPersonByName(name) {
  * @param {string} name
  * @returns Person object
  */
-async function createPerson(name) {
+async function createPerson(
+	name,
+	dob = null,
+	address = null,
+	licenseExpiry = null,
+	license = null
+) {
 	const { data, error } = await client
 		.from("People")
-		.insert({ Name: name })
+		.insert({
+			Name: name,
+			DOB: dob,
+			Address: address,
+			ExpiryDate: licenseExpiry,
+			LicenseNumber: license,
+		})
 		.select();
 	return data?.[0];
 }
