@@ -299,7 +299,5 @@ async function createVehicle(
 
 
 document.addEventListener("DOMContentLoaded", () => {
-	buildVehicleSelect();
 	buildPeopleSelect();
-	buildOffencesSelect();
 });
