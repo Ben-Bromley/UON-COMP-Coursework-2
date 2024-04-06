@@ -55,3 +55,23 @@ A front-end interface that queries a supabase backend.
 | 4a. The user should be able to file a report for an incident and retrieve existing reports (e.g., via a search)                                                                                                                                                                                                                                                             | ✅       | [30f19bb](https://github.com/Ben-Bromley/UON-COMP1004-Coursework-2/commit/30f19bbc01a19e57aa39c4fe3aa1b6f9820a6295) | Using a similar function to earlier requirements, I've retrieved the value of the text input, and passed it into a function which does an ilike query of the `Fines` table. It returns an array of objects which I then display in the results section                                                                                                           |
 | 4b. Filing new ones will involve submitting a textual statement, recording the time of the incident and the vehicle and person involved. If either the person or the vehicle are new to the system, then appropriate new entry/entries to the database should be added. An user should be able to record the offence from a list of offences contained in the database.     |          |                                                                                                                     | I've created a function that retrieves existing vehicles and people from the database and allows the user to select them as the vehicle/person in the incident, it disables the relevant fields and fills in the data on the users behalf ([99505a1](https://github.com/Ben-Bromley/UON-COMP1004-Coursework-2/commit/99505a152c399214b3a28be6dedba117943d1303)). I then implemented the same logic for the list of offences ([9b2f40d](https://github.com/Ben-Bromley/UON-COMP1004-Coursework-2/commit/9b2f40d378b457ac80d39afe7cf27cbf64dd8c94)). |
 
+### Other TODOs
+
+---
+
+- Add "labels" to inputs? ✅
+- use CSS grid in places? ✅
+- when creating a new vehicle record, if the owner already exists, should that match up be made on the backend ✅
+- validate forms (required, regex etc) ✅
+  - Are we writing our own regex to validate license plates via the "pattern" HTML attribute and even on the backend?
+- fix gh-pages links (404s due to subdir) ✅
+- show messages on screen when form submission is complete ✅
+- allow users to search for a vehicle owner when submitting a new vehicle
+  - if not, they can fill in the info themselves
+- create a functioning toggling navbar?
+- embellish requirement descriptions (ie talk about form validation and stuff)
+- setup rls / db security?
+- stop manually setting `.innerHTML`
+- check that there isn't a firstOrCreate method in the supabase JS API that I could use
+- convert search results into a table
+- validate the PersonIDs and VehicleIDs from the selects?
