@@ -167,17 +167,43 @@ async function submitNewVehicle(e) {
 // --- HELPERS ---
 
 /**
- * When given a name, either find the first person with that name,
- * or create a new person recrod using that name
- * @param {string} ownerName
- * @returns Person record
+ * Use the given ID to retrieve a person record,
+ * or create a new person record using the given data
+ * @param {string} personId
+ * @param {string} personName
+ * @param {string} personDOB
+ * @param {string} personAddress
+ * @param {string} personLicenseExpiry
+ * @param {string} personLicense
+ * @returns A People record
  */
-async function findOrCreateOwner(ownerName) {
-	if (!ownerName) throw new Error("Invalid owner name provided");
+async function findOrCreatePerson(
+	personId,
+	personName,
+	personDOB,
+	personAddress,
+	personLicenseExpiry,
+	personLicense
+) {
+	let owner = null;
 
-	let owner = await getPersonByName(ownerName);
-	if (!owner) {
-		owner = await createPerson(ownerName);
+	// if personId might be an existing PersonID, try to retrieve the person
+	if (personId && personId !== "new-person") {
+		owner = await getPersonByID(personId);
+		// early return if owner is found
+		if (owner) return owner;
+	}
+
+	// If the owner isn't found or the <select> input has "new-person" chosen,
+	// create a new person record with the provided details
+	if (!owner || !personId || personId === "new-person") {
+		owner = await createPerson(
+			personName,
+			personDOB,
+			personAddress,
+			personLicenseExpiry,
+			personLicense
+		);
 	}
 
 	return owner;
