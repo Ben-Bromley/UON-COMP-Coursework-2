@@ -166,9 +166,9 @@ async function submitNewVehicle(e) {
 	};
 	const { error } = await client.from("Vehicles").insert(newVehicle);
 	if (error) {
-		e.target.innerHTML = "<div>Error submitting vehicle.</div>";
+		e.target.innerHTML = "<p>Error submitting vehicle.</p>";
 	}
-	e.target.innerHTML = "<div>New Vehicle Created.</div>";
+	e.target.innerHTML = "<p>New Vehicle Created.</p>";
 }
 
 // --- HELPERS ---
