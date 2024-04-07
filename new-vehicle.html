@@ -69,7 +69,12 @@
 							minlength="2"
 							maxlength="16"
 						/>
-						<label for="vehicle-owner-name">Owner Name</label>
+						<label for="incident-report-person">Vehicle Owner</label>
+						<select
+							id="incident-report-person"
+							name="incident-report-person"
+						></select>
+						<label for="vehicle-owner-name">Name</label>
 						<input
 							type="text"
 							name="vehicle-owner-name"
@@ -78,6 +83,32 @@
 							required="true"
 							minlength="2"
 							maxlength="128"
+						/>
+						<label for="vehicle-owner-dob">Date Of Birth</label>
+						<input
+							type="date"
+							name="vehicle-owner-dob"
+							id="vehicle-owner-dob"
+							placeholder="Jane Doe"
+							required="true"
+						/>
+						<label for="vehicle-owner-address">Address</label>
+						<input
+							type="text"
+							name="vehicle-owner-address"
+							id="vehicle-owner-address"
+							placeholder="Jane Doe"
+							required="true"
+							minlength="2"
+							maxlength="128"
+						/>
+						<label for="vehicle-owner-expirydate">License Expiry</label>
+						<input
+							type="date"
+							name="vehicle-owner-expirydate"
+							id="vehicle-owner-expirydate"
+							placeholder="Jane Doe"
+							required="true"
 						/>
 						<input type="submit" class="btn-primary" value="Register" />
 					</form>
