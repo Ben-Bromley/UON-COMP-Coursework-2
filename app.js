@@ -197,6 +197,19 @@ async function getPersonByName(name) {
 }
 
 /**
+ * When given a id, retrieve the corresponding People record
+ * @param {string} id The ID of the person to fetch
+ * @returns Person record
+ */
+async function getPersonByID(id) {
+	const { data, error } = await client
+		.from("People")
+		.select()
+		.eq("PersonID", id);
+	return data?.[0];
+}
+
+/**
  * When provided with a name, create a new People record
  * @param {string} name
  * @returns Person object
