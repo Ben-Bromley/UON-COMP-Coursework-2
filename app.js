@@ -147,9 +147,16 @@ newVehicleForm?.addEventListener("submit", submitNewVehicle);
 
 async function submitNewVehicle(e) {
 	e.preventDefault();
-	const vehicleOwner = await findOrCreateOwner(
-		e.target["vehicle-owner-name"].value
+
+	const vehicleOwner = await findOrCreatePerson(
+		e.target["new-vehicle-owner"].value,
+		e.target["vehicle-owner-name"].value,
+		e.target["vehicle-owner-dob"].value,
+		e.target["vehicle-owner-address"].value,
+		e.target["vehicle-owner-expirydate"].value,
+		e.target["vehicle-registration"].value
 	);
+
 	const newVehicle = {
 		VehicleID: e.target["vehicle-registration"].value,
 		Make: e.target["vehicle-make"].value,
@@ -247,6 +254,9 @@ async function createPerson(
 	licenseExpiry = null,
 	license = null
 ) {
+	if (!name) {
+		throw new Error("Can't create new person without a name");
+	}
 	const { data, error } = await client
 		.from("People")
 		.insert({
@@ -265,16 +275,14 @@ async function createPerson(
  */
 async function buildPeopleSelect() {
 	const { data, error } = await client.from("People").select();
-	const incidentReportSelect = document.getElementById(
-		"incident-report-person"
-	);
+	const newVehicleOwner = document.getElementById("new-vehicle-owner");
 
-	if (!incidentReportSelect) return;
+	if (!newVehicleOwner) return;
 
-	incidentReportSelect.innerHTML =
+	newVehicleOwner.innerHTML =
 		'<option value="new-person">+ New Person</option>';
 
-	incidentReportSelect.innerHTML += data.map((person) => {
+	newVehicleOwner.innerHTML += data.map((person) => {
 		return `<option value="${person.PersonID}">${person.Name}</option>`;
 	});
 
@@ -288,7 +296,7 @@ async function buildPeopleSelect() {
 		}
 	);
 
-	incidentReportSelect.addEventListener("change", (e) => {
+	newVehicleOwner.addEventListener("change", (e) => {
 		if (e.target.value === "new-person") {
 			// empty the attributes and enable them
 			personAttributes.forEach((attribute) => {
@@ -335,7 +343,6 @@ async function createVehicle(
 		.select();
 	return data?.[0];
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
 	buildPeopleSelect();
