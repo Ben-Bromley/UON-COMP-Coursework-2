@@ -78,7 +78,7 @@ header {
 }
 
 header h1#page-title {
-	margin: 0px auto;
+	margin: 0px auto 1rem auto;
 	color: var(--text-light);
 	font-size: 2rem;
 }
