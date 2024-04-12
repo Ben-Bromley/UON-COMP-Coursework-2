@@ -251,12 +251,6 @@ section.search-results {
 }
 
 /* --- NEW VEHICLE FORM STYLES --- */
-h2.content-header {
-	margin-top: 4rem;
-	margin-bottom: 2rem;
-	text-align: center;
-	color: var(--bg-primary);
-}
 
 .new-record-form-wrapper {
 	max-width: 80ch;
