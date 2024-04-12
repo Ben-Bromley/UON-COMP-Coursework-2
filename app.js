@@ -23,7 +23,9 @@ async function submitPeopleSearch(e) {
 	const { data, error } = await client
 		.from("People")
 		.select()
-		.ilike("Name", `%${peopleSearchInput}%`);
+		.or(
+			`Name.ilike.%${peopleSearchInput}%, LicenseNumber.ilike.%${peopleSearchInput}%`
+		);
 
 	if (!data?.length > 0) {
 		return (peopleResults.innerHTML = "<p>Person not found</p>");
