@@ -302,7 +302,10 @@ form.new-record-form > input[type="submit"] {
 footer#footer {
 	background: var(--bg-primary);
 	color: var(--text-light);
-	padding: 1rem;
 	font-size: 1rem;
 	text-align: center;
+}
+
+footer#footer p {
+	margin: 0;
 }
