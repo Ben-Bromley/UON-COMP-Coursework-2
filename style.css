@@ -127,6 +127,7 @@ header nav ul li a:hover {
 aside {
 	background: var(--bg-white);
 	color: var(--text-gray);
+	border-radius: 10px;
 	border: 10px double var(--bg-primary);
 	margin: 0.4rem;
 	padding: 1rem;
@@ -139,6 +140,7 @@ aside figure#figure-one {
 
 aside figure#figure-one img {
 	width: 100%;
+	border-radius: 5px;
 }
 
 aside figure#figure-one figcaption {
@@ -157,6 +159,7 @@ aside figure#figure-one figcaption a:hover {
 main#main-wrapper {
 	min-height: 80vh;
 	background: var(--bg-light);
+	border-radius: 10px;
 	border: 10px double var(--bg-primary);
 	margin: 0.4rem;
 	padding: 1rem;
@@ -174,6 +177,7 @@ section#content form.search-form {
 	flex-wrap: wrap;
 	padding: 1rem 2rem;
 	position: relative;
+	border-radius: 0.3rem;
 }
 
 section#content > form.search-form > div.search-wrapper > .search-bar-icon {
@@ -191,6 +195,7 @@ section#content > form.search-form input {
 
 section#content > form.search-form > div.search-wrapper {
 	border: 1px solid var(--bg-light);
+	border-radius: 0.3rem;
 	margin: 0.5rem;
 	width: 100%;
 	display: flex;
