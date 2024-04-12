@@ -124,6 +124,28 @@ header nav ul li a:hover {
 /* --- ASIDE / SIDEBAR --- */
 aside {
 	background: var(--bg-white);
+	color: var(--text-gray);
+}
+
+aside figure#figure-one {
+	margin: 0;
+	width: 100%;
+}
+
+aside figure#figure-one img {
+	width: 100%;
+}
+
+aside figure#figure-one figcaption {
+	padding: 1rem;
+}
+
+aside figure#figure-one figcaption a {
+	color: var(--text-gray);
+}
+
+aside figure#figure-one figcaption a:hover {
+	color: var(--text-primary);
 }
 
 /* --- MAIN BODY --- */
