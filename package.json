@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "A front-end interface that queries a supabase backend.",
   "main": "app.js",
-  "scripts": {},
+  "scripts": {
+    "start": "http-server"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.43.0",
-    "@types/node": "^20.12.7"
+    "@types/node": "^20.12.7",
+    "http-server": "^14.1.1"
   }
 }
