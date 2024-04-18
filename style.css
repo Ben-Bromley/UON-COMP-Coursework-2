@@ -41,7 +41,7 @@ footer {
 }
 
 /* USE GRID FOR PRIMARY PAGE LAYOUT */
-body {
+body#container {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-template-rows: auto auto 5rem;
