@@ -1,3 +1,5 @@
+// The below testing script is not my own, this was provided by the lecturer.
+
 import exp from 'constants';
 
 // @ts-check
