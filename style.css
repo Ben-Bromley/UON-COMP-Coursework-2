@@ -325,3 +325,36 @@ footer#footer {
 footer#footer p {
 	margin: 0;
 }
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 960px) {
+	body#container {
+		display: flex;
+		flex-direction: column;
+	}
+	aside#sidebar {
+		max-height: 10rem;
+	}
+	aside#sidebar figure {
+		max-height: 5rem;
+		overflow: hidden;
+	}
+	aside#sidebar figure img {
+		object-fit: contain;
+		width: 100%;
+	}
+
+	section.search-results {
+		padding: 2rem 0;
+	}
+
+	.result-card {
+		padding: 1rem;
+	}
+	.result-card > img.result-card-icon {
+		border: 2px solid var(--bg-primary-lighter);
+		width: 4rem;
+		height: 4rem;
+    margin: 1rem;
+	}
+}
