@@ -182,7 +182,6 @@ async function submitNewVehicle(e) {
 	const vehicleOwner = await getPersonByName(
 		e.target["vehicle-owner-name"].value
 	);
-	console.log(vehicleOwner);
 	const newVehicle = {
 		VehicleID: e.target["vehicle-registration"].value,
 		Make: e.target["vehicle-make"].value,
@@ -191,8 +190,6 @@ async function submitNewVehicle(e) {
 	};
 
 	if (vehicleOwner) newVehicle.OwnerID = vehicleOwner.PersonID;
-
-	console.log("adding vehicle record");
 	const { error } = await client.from("Vehicles").insert(newVehicle);
 	if (error) {
 		newVehicleMessage.innerHTML = "<p>Error submitting vehicle.</p>";
@@ -219,7 +216,6 @@ async function submitNewVehicle(e) {
 async function submitVehicleOwner(e) {
 	e.preventDefault();
 	// create owner
-	console.log("creating new person record");
 	const vehicleOwner = await findOrCreatePerson(
 		e.target["vehicle-owner-id"].value,
 		e.target["vehicle-owner-name"].value,
@@ -228,15 +224,12 @@ async function submitVehicleOwner(e) {
 		e.target["vehicle-owner-expirydate"].value,
 		e.target["vehicle-owner-license"].value
 	);
-	console.log("person created");
 
 	// add owner details
-	console.log("adding new owner ID to vehicle record");
 	const error = await addVehicleOwner(
 		document.getElementById("rego").value,
 		vehicleOwner.PersonID
 	);
-	console.log("record updated.");
 
 	if (error) {
 		newVehicleMessage.innerHTML = "<p>Error submitting vehicle owner.</p>";
