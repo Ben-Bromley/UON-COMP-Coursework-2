@@ -1,19 +1,20 @@
+// These tests are ones I wrote myself
+
 import { test, expect } from "@playwright/test";
 
-const pageUrl: string = "http://127.0.0.1:8080/index.html";
+const pageUrl: string = "http://127.0.0.1:3000/index.html";
+
+test.beforeEach(async ({ page }) => {
+	await page.goto(pageUrl);
+});
 
 test("Has Specified Title", async ({ page }) => {
-	await page.goto(pageUrl);
-
 	// Expect title to contain the given pattern
 	await expect(page).toHaveTitle(/COMP1004 \| Driver Search/);
 });
 
 test.describe("Search for People", () => {
 	test("Search People By Name", async ({ page }) => {
-		// got to localhost page
-		await page.goto(pageUrl);
-
 		// check title
 		await expect(
 			page.getByRole("heading", { name: "People Search" })
@@ -21,7 +22,7 @@ test.describe("Search for People", () => {
 
 		// fill in search and click search button
 		await page.getByRole("textbox").fill("Rachel Smith");
-		await page.getByRole("button", { name: "Search People" }).click();
+		await page.getByRole("button", { name: "Submit" }).click();
 
 		// wait for supabase API
 		await page.waitForResponse(
@@ -33,9 +34,6 @@ test.describe("Search for People", () => {
 	});
 
 	test("Search People By License", async ({ page }) => {
-		// got to localhost page
-		await page.goto(pageUrl);
-
 		// check title
 		await expect(
 			page.getByRole("heading", { name: "People Search" })
@@ -43,7 +41,7 @@ test.describe("Search for People", () => {
 
 		// fill in search and click search button
 		await page.getByRole("textbox").fill("SG345PQ");
-		await page.getByRole("button", { name: "Search People" }).click();
+		await page.getByRole("button", { name: "Submit" }).click();
 
 		// wait for supabase API
 		await page.waitForResponse(
