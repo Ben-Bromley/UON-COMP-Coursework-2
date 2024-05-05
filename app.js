@@ -219,16 +219,8 @@ async function findOrCreatePerson(
 ) {
 	let owner = null;
 
-	// if personId might be an existing PersonID, try to retrieve the person
-	if (personId && personId !== "new-person") {
-		owner = await getPersonByID(personId);
-		// early return if owner is found
-		if (owner) return owner;
-	}
-
-	// If the owner isn't found or the <select> input has "new-person" chosen,
 	// create a new person record with the provided details
-	if (!owner || !personId || personId === "new-person") {
+	if (!owner || !personId) {
 		owner = await createPerson(
 			personName,
 			personDOB,
@@ -296,54 +288,6 @@ async function createPerson(
 }
 
 /**
- * Retrieving a list of people from the database, display them in the <select>
- */
-async function buildPeopleSelect() {
-	const { data, error } = await client.from("People").select();
-	const newVehicleOwner = document.getElementById("new-vehicle-owner");
-
-	if (!newVehicleOwner) return;
-
-	newVehicleOwner.innerHTML =
-		'<option value="new-person">+ New Person</option>';
-
-	newVehicleOwner.innerHTML += data.map((person) => {
-		return `<option value="${person.PersonID}">${person.Name}</option>`;
-	});
-
-	// create a list of the inputs for the persons attributes
-	const personAttributes = ["Name", "DOB", "Address", "ExpiryDate"].map(
-		(attr) => {
-			return {
-				input: document.getElementById(`vehicle-owner-${attr.toLowerCase()}`),
-				key: attr,
-			};
-		}
-	);
-
-	newVehicleOwner.addEventListener("change", (e) => {
-		if (e.target.value === "new-person") {
-			// empty the attributes and enable them
-			personAttributes.forEach((attribute) => {
-				attribute.input.disabled = false;
-				attribute.input.value = "";
-			});
-		} else {
-			// get selected person and fill attributes
-			const currentPerson = data.filter((person) => {
-				return parseInt(person.PersonID) === parseInt(e.target.value);
-			})[0];
-			personAttributes.forEach((attribute) => {
-				attribute.input.value = currentPerson[attribute.key] || "";
-				// don't show a placeholder value here, in case a user has missing attributes and it looks confusing
-				attribute.input.placeholder = "";
-				attribute.input.disabled = true;
-			});
-		}
-	});
-}
-
-/**
  * When given a list of vehicle attributes, insert a new record into the Vehicles table, with those attributes
  * @param {number} VehicleID
  * @param {string} VehicleMake
@@ -368,7 +312,3 @@ async function createVehicle(
 		.select();
 	return data?.[0];
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-	buildPeopleSelect();
-});
