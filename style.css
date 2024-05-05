@@ -335,6 +335,25 @@ footer#footer p {
 }
 
 /* MEDIA QUERIES */
+@media screen and (max-width: 925px) {
+	.result-card-icon {
+		display: none;
+	}
+	.result-card {
+		padding: 1rem;
+	}
+}
+@media screen and (max-width: 750px) {
+	section.search-results {
+		padding: 0;
+	}
+}
+@media screen and (max-width: 630px) {
+	.result-card .result-attributes {
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+}
 @media screen and (max-width: 500px) {
 	body#container {
 		display: flex;
@@ -364,5 +383,10 @@ footer#footer p {
 		width: 4rem;
 		height: 4rem;
     margin: 1rem;
+	}
+}
+@media screen and (max-width: 470px) {
+	header nav ul li {
+		margin: 0.4rem;
 	}
 }
