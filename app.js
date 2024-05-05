@@ -108,6 +108,7 @@ async function submitVehicleSearch(e) {
 				Make,
 				Model,
 				Colour,
+				OwnerID,
 				People (
 					Name
 				)
@@ -126,6 +127,7 @@ async function submitVehicleSearch(e) {
 		.map((vehicle) => {
 			return !vehicle.OwnerID ? vehicle.VehicleID : null;
 		})
+		.filter((o) => o)
 		.join(", ");
 
 	if (missingOwners) {
