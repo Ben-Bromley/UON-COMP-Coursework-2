@@ -152,7 +152,7 @@ aside figure#figure-one img {
 }
 
 aside figure#figure-one figcaption {
-	padding: 1rem;
+	padding: 1rem 0;
 }
 
 aside figure#figure-one figcaption a {
