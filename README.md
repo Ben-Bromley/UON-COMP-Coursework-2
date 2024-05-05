@@ -54,8 +54,8 @@ Playwright is configured to use the npm start script to automate running a dev s
 
 
 Additional Work:
- - Made design more responsive [caff049](https://github.com/Ben-Bromley/UON-COMP1004-Coursework-2/commit/caff049b384359293f8e815651fb594bf9450914)
+ - Made design more responsive [caff049](https://github.com/Ben-Bromley/UON-COMP-Coursework-2/commit/caff049b384359293f8e815651fb594bf9450914)
    - adjusting the grid to display flex, in a column so the page appears header, aside, main, footer.
-   - tweaked some spacing and sizing to make everything fit on smaller screens
+   - tweaked some spacing and sizing to make everything fit on smaller screens - [0670c71](https://github.com/Ben-Bromley/UON-COMP-Coursework-2/commit/0670c7132b52c6ab78c22542fb2a5938173d87b1)
  - Accessibility score of 100
- - 
+   - Updated text colours and add a new alternate text colour to ensure good contrast [53f52f3](https://github.com/Ben-Bromley/UON-COMP-Coursework-2/commit/53f52f333b105c1fbe1fd8d387654c97a98b35de)
