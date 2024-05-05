@@ -72,4 +72,5 @@ Playwright is configured to use the npm start script to automate running a dev s
 
 ## Playwright Testing issues
 
-- Common issue in "add a vehicle" test where `.fill()` method is timing out despite the target element being present and accessible. Occurring on [GitHub action runs](https://github.com/Ben-Bromley/UON-COMP-Coursework-2/actions/runs/8960176331/job/24606395376) and locally
+- ~~Common issue in "add a vehicle" test where `.fill()` method is timing out despite the target element being present and accessible. Occurring on [GitHub action runs](https://github.com/Ben-Bromley/UON-COMP-Coursework-2/actions/runs/8960176331/job/24606395376) and locally~~
+  - This is resolved. The GitHub action would run the final test which added the test data to the relevant tables. The next time the test was run (locally or in an action) it would fail because the data has already been registered and the secondary form would not display. Restoring the test data to factory conditions and removing the GitHub workflow was the best way to amend this.
