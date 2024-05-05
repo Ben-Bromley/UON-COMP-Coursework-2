@@ -46,84 +46,113 @@
 		<main id="main-wrapper">
 			<section id="content">
 				<div class="new-record-form-wrapper">
+					<div id="message"></div>
 					<form id="new-vehicle-form" class="new-record-form">
-						<label for="vehicle-registration">Registration</label>
+						<label for="rego">Registration</label>
 						<input
 							type="text"
 							name="vehicle-registration"
-							id="vehicle-registration"
+							id="rego"
 							placeholder="SG20 LTP"
 							required="true"
 							minlength="2"
 							maxlength="8"
 						/>
-						<label for="vehicle-make">Make</label>
+						<label for="make">Make</label>
 						<input
 							type="text"
 							name="vehicle-make"
-							id="vehicle-make"
+							id="make"
 							placeholder="Ford"
 							required="true"
 							minlength="2"
 							maxlength="32"
 						/>
-						<label for="vehicle-model">Model</label>
+						<label for="model">Model</label>
 						<input
 							type="text"
 							name="vehicle-model"
-							id="vehicle-model"
+							id="model"
 							placeholder="Fiesta"
 							required="true"
 							minlength="2"
 							maxlength="128"
 						/>
-						<label for="vehicle-colour">Colour</label>
+						<label for="colour">Colour</label>
 						<input
 							type="text"
 							name="vehicle-colour"
-							id="vehicle-colour"
+							id="colour"
 							placeholder="Blue"
 							required="true"
 							minlength="2"
 							maxlength="16"
 						/>
-						<label for="new-vehicle-owner">Owner</label>
-						<select id="new-vehicle-owner" name="new-vehicle-owner"></select>
-						<label for="vehicle-owner-name">Name</label>
+						<label for="owner">Name</label>
 						<input
 							type="text"
 							name="vehicle-owner-name"
-							id="vehicle-owner-name"
+							id="owner"
 							placeholder="Jane Doe"
 							required="true"
 							minlength="2"
 							maxlength="128"
 						/>
-						<label for="vehicle-owner-dob">Date Of Birth</label>
+						<input type="submit" id="new-vehicle-submit-btn" class="btn-primary" value="Add Vehicle" />
+					</form>
+					<form id="vehicle-owner-form" class="new-record-form hidden">
+						<label for="personid">Person ID</label>
 						<input
-							type="date"
-							name="vehicle-owner-dob"
-							id="vehicle-owner-dob"
+							type="number"
+							name="vehicle-owner-id"
+							id="personid"
 							required="true"
 						/>
-						<label for="vehicle-owner-address">Address</label>
+						<label for="name">Name</label>
+						<input
+							type="text"
+							name="vehicle-owner-name"
+							id="name"
+							placeholder="John Doe"
+							required="true"
+							minlength="2"
+							maxlength="128"
+						/>
+						<label for="address">Address</label>
 						<input
 							type="text"
 							name="vehicle-owner-address"
-							id="vehicle-owner-address"
+							id="address"
 							placeholder="Nottingham"
 							required="true"
 							minlength="2"
 							maxlength="128"
 						/>
-						<label for="vehicle-owner-expirydate">License Expiry</label>
+						<label for="dob">Date Of Birth</label>
+						<input
+							type="date"
+							name="vehicle-owner-dob"
+							id="dob"
+							required="true"
+						/>
+						<label for="license">License</label>
+						<input
+							type="text"
+							name="vehicle-owner-license"
+							id="license"
+							placeholder="SG20LTP"
+							required="true"
+							minlength="2"
+							maxlength="128"
+						/>
+						<label for="expire">License Expiry</label>
 						<input
 							type="date"
 							name="vehicle-owner-expirydate"
-							id="vehicle-owner-expirydate"
+							id="expire"
 							required="true"
 						/>
-						<input type="submit" class="btn-primary" value="Register" />
+						<input type="submit" class="btn-primary" value="Add Owner" />
 					</form>
 				</div>
 			</section>
