@@ -68,6 +68,10 @@ However, if the local server is already running, it should automatically use it 
 <img width="640" alt="image" src="https://github.com/Ben-Bromley/UON-COMP-Coursework-2/assets/74667456/136e30c6-226d-43b9-ac90-89a6bf33faad">
 <img width="640" alt="image" src="https://github.com/Ben-Bromley/UON-COMP-Coursework-2/assets/74667456/127d78d9-8b92-4fe2-abba-d671ecb9fe5b">
 
+## The 3 SVGs in the assets directory are my own design. I created them in Figma:
+<img width="640" alt="image" src="https://github.com/Ben-Bromley/UON-COMP-Coursework-2/assets/74667456/b03d6347-180a-4689-962d-aa807e2010d4">
+
+
 ## Playwright Testing issues
 
 - ~~Common issue in "add a vehicle" test where `.fill()` method is timing out despite the target element being present and accessible. Occurring on [GitHub action runs](https://github.com/Ben-Bromley/UON-COMP-Coursework-2/actions/runs/8960176331/job/24606395376) and locally~~
