@@ -171,34 +171,107 @@ function renderVehicleCard(vehicle) {
 
 const newVehicleForm = document.getElementById("new-vehicle-form");
 newVehicleForm?.addEventListener("submit", submitNewVehicle);
+const newVehicleMessage = document.getElementById("message");
+const newVehicleOwnerDetailsForm =
+	document.getElementById("vehicle-owner-form");
+newVehicleOwnerDetailsForm?.addEventListener("submit", submitVehicleOwner);
 
 async function submitNewVehicle(e) {
 	e.preventDefault();
-
-	const vehicleOwner = await findOrCreatePerson(
-		e.target["new-vehicle-owner"].value,
-		e.target["vehicle-owner-name"].value,
-		e.target["vehicle-owner-dob"].value,
-		e.target["vehicle-owner-address"].value,
-		e.target["vehicle-owner-expirydate"].value,
-		e.target["vehicle-registration"].value
+	// get owner
+	const vehicleOwner = await getPersonByName(
+		e.target["vehicle-owner-name"].value
 	);
-
+	console.log(vehicleOwner);
 	const newVehicle = {
 		VehicleID: e.target["vehicle-registration"].value,
 		Make: e.target["vehicle-make"].value,
 		Model: e.target["vehicle-model"].value,
 		Colour: e.target["vehicle-colour"].value,
-		OwnerID: vehicleOwner.PersonID,
 	};
+
+	if (vehicleOwner) newVehicle.OwnerID = vehicleOwner.PersonID;
+
+	console.log("adding vehicle record");
 	const { error } = await client.from("Vehicles").insert(newVehicle);
 	if (error) {
-		e.target.innerHTML = "<p>Error submitting vehicle.</p>";
+		newVehicleMessage.innerHTML = "<p>Error submitting vehicle.</p>";
+		return;
 	}
-	e.target.innerHTML = "<p>Vehicle added successfully</p>";
+
+	if (!vehicleOwner) {
+		// if owner isn't found in database, disable this form and display the owner details form
+		newVehicleMessage.innerHTML +=
+			"<p>Vehicle Saved. Owner not found in datbase. Please add their details</p>";
+		// disable vehicle form and display owner info form
+		document.getElementById("new-vehicle-submit-btn").disabled = true;
+		e.target["vehicle-registration"].disabled = true;
+		e.target["vehicle-make"].disabled = true;
+		e.target["vehicle-model"].disabled = true;
+		e.target["vehicle-colour"].disabled = true;
+		e.target["vehicle-owner-name"].disabled = true;
+		newVehicleOwnerDetailsForm.classList.remove("hidden");
+	} else {
+		newVehicleMessage.innerHTML = "<p>Vehicle added successfully</p>";
+	}
+}
+
+async function submitVehicleOwner(e) {
+	e.preventDefault();
+	// create owner
+	console.log("creating new person record");
+	const vehicleOwner = await findOrCreatePerson(
+		e.target["vehicle-owner-id"].value,
+		e.target["vehicle-owner-name"].value,
+		e.target["vehicle-owner-dob"].value,
+		e.target["vehicle-owner-address"].value,
+		e.target["vehicle-owner-expirydate"].value,
+		e.target["vehicle-owner-license"].value
+	);
+	console.log("person created");
+
+	// add owner details
+	console.log("adding new owner ID to vehicle record");
+	const error = await addVehicleOwner(
+		document.getElementById("rego").value,
+		vehicleOwner.PersonID
+	);
+	console.log("record updated.");
+
+	if (error) {
+		newVehicleMessage.innerHTML = "<p>Error submitting vehicle owner.</p>";
+	}
+	newVehicleMessage.innerHTML =
+		"<p>Vehicle added successfully, owner details saved.</p>";
+	// set form elements to empty, so just success message displays
+	newVehicleOwnerDetailsForm.innerHTML = "";
+	e.target.innerHTML = "";
 }
 
 // --- HELPERS ---
+
+/**
+ * Use the given registration to retrieve a vehicle record
+ * @param {string} registration
+ * @returns Vehicle record
+ */
+async function getVehicleByRegistration(registration) {
+	const { data, error } = await client
+		.from("Vehicles")
+		.select()
+		.eq("VehicleID", registration);
+	return data?.[0];
+}
+
+async function addVehicleOwner(registration, ownerID) {
+	const vehicle = getVehicleByRegistration(registration);
+	// update vehicle record with owner ID
+	const { error } = await client
+		.from("Vehicles")
+		.update({ OwnerID: ownerID })
+		.eq("VehicleID", registration);
+	return error;
+}
 
 /**
  * Use the given ID to retrieve a person record,
@@ -224,6 +297,7 @@ async function findOrCreatePerson(
 	// create a new person record with the provided details
 	if (!owner || !personId) {
 		owner = await createPerson(
+			personId,
 			personName,
 			personDOB,
 			personAddress,
@@ -267,6 +341,7 @@ async function getPersonByID(id) {
  * @returns Person object
  */
 async function createPerson(
+	id,
 	name,
 	dob = null,
 	address = null,
@@ -279,6 +354,7 @@ async function createPerson(
 	const { data, error } = await client
 		.from("People")
 		.insert({
+			PersonID: id,
 			Name: name,
 			DOB: dob,
 			Address: address,
