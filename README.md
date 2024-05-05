@@ -5,6 +5,7 @@ A front-end interface that queries a supabase backend.
 This project uses [http-server](https://www.npmjs.com/package/http-server) to run a local development server.
 Playwright is configured to use the npm start script to automate running a dev server whilst testing.
 
+Use the start script to run the local server.
 `npm run start`
 
 ## README Requirements
