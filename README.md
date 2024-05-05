@@ -72,4 +72,4 @@ Playwright is configured to use the npm start script to automate running a dev s
 
 ## Playwright Testing issues
 
-- Common issue where `.fill()` method is timing out despite the target element being present and accessible. Occurring on [GitHub action runs](https://github.com/Ben-Bromley/UON-COMP-Coursework-2/actions/runs/8960176331/job/24606395376) and locally
+- Common issue in "add a vehicle" test where `.fill()` method is timing out despite the target element being present and accessible. Occurring on [GitHub action runs](https://github.com/Ben-Bromley/UON-COMP-Coursework-2/actions/runs/8960176331/job/24606395376) and locally
