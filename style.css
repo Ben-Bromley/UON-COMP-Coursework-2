@@ -68,6 +68,10 @@ textarea {
 	background-color: var(--bg-primary-lighter);
 }
 
+.btn-primary:disabled {
+	background-color: var(--text-gray);
+}
+
 /* --- HEADER STYLES --- */
 header {
 	background: var(--bg-primary);
