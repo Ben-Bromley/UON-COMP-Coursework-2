@@ -61,6 +61,15 @@ Playwright is configured to use the npm start script to automate running a dev s
  - Accessibility score of 100
    - Updated text colours and add a new alternate text colour to ensure good contrast [53f52f3](https://github.com/Ben-Bromley/UON-COMP-Coursework-2/commit/53f52f333b105c1fbe1fd8d387654c97a98b35de)
 
+
+<img width="640" alt="image" src="https://github.com/Ben-Bromley/UON-COMP-Coursework-2/assets/74667456/eab439a9-73c3-472d-a650-f0236a34d810">
+<img width="640" alt="image" src="https://github.com/Ben-Bromley/UON-COMP-Coursework-2/assets/74667456/136e30c6-226d-43b9-ac90-89a6bf33faad">
+<img width="640" alt="image" src="https://github.com/Ben-Bromley/UON-COMP-Coursework-2/assets/74667456/127d78d9-8b92-4fe2-abba-d671ecb9fe5b">
+
+
+
+
+
 ## Playwright Testing issues
 
 - Common issue where `.fill()` method is timing out despite the target element being present and accessible. Occurring on [GitHub action runs](https://github.com/Ben-Bromley/UON-COMP-Coursework-2/actions/runs/8960176331/job/24606395376) and locally
