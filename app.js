@@ -17,9 +17,11 @@ peopleSearchForm?.addEventListener("submit", submitPeopleSearch);
  */
 async function submitPeopleSearch(e) {
 	e.preventDefault();
-	const peopleSearchInput = e.target["name-search"].value;
-	const peopleResults = document.getElementById("people-results");
-	peopleResults.innerHTML = "<p>Loading...</p>";
+	const peopleSearchInput = e.target["name"].value;
+	const peopleResults = document.getElementById("results");
+	const messageElement = document.getElementById("message");
+	peopleResults.innerHTML = "";
+	messageElement.innerHTML = "<p>Loading...</p>";
 	const { data, error } = await client
 		.from("People")
 		.select()
@@ -28,9 +30,11 @@ async function submitPeopleSearch(e) {
 		);
 
 	if (!data?.length > 0) {
-		return (peopleResults.innerHTML = "<p>Person not found</p>");
+		messageElement.innerHTML = "<p>Person not found</p>";
+		return;
 	}
 
+	messageElement.innerHTML = "<p>Search successful</p>";
 	peopleResults.innerHTML = data
 		.map((person) => {
 			return renderPersonCard(person);
@@ -46,10 +50,10 @@ async function submitPeopleSearch(e) {
 function renderPersonCard(person) {
 	return `<div class="result-card">
 						<img class="result-card-icon" src="assets/user.svg" alt="User Profile Template" />
-						<div class="result-card-content">
+						<span class="result-card-content">
 							<h3 class="result-card-title">${person.Name}</h3>
-							<div class="result-attributes">
-								<div class="attribute-group">
+							<span class="result-attributes">
+								<span class="attribute-group">
 									<p class="${
 										person.Address === null ? "attribute-missing" : ""
 									}"><span class="attribute-name">Address </span>${
@@ -60,8 +64,8 @@ function renderPersonCard(person) {
 									}"><span class="attribute-name">DOB </span>${
 		person.DOB ?? "missing"
 	}</p>
-								</div>
-								<div class="attribute-group">
+								</span>
+								<span class="attribute-group">
 									<p class="${
 										person.LicenseNumber === null ? "attribute-missing" : ""
 									}"><span class="attribute-name">License </span>${
@@ -72,9 +76,9 @@ function renderPersonCard(person) {
 									}"><span class="attribute-name">Expires </span>${
 		person.ExpiryDate ?? "missing"
 	}</p>
-								</div>
-							</div>
-						</div>
+								</span>
+							</span>
+						</span>
 					</div>`;
 }
 
@@ -91,10 +95,11 @@ vehicleSearchForm?.addEventListener("submit", submitVehicleSearch);
  */
 async function submitVehicleSearch(e) {
 	e.preventDefault();
-	const vehicleSearchInput = e.target["vehicle-search"].value;
-	const vehicleResults = document.getElementById("vehicle-results");
-
-	vehicleResults.innerHTML = "<p>Loading...</p>";
+	const vehicleSearchInput = e.target["rego"].value;
+	const vehicleResults = document.getElementById("results");
+	const vehicleMessage = document.getElementById("message");
+	vehicleResults.innerHTML = "";
+	vehicleMessage.innerHTML = "<p>Loading...</p>";
 	const { data, error } = await client
 		.from("Vehicles")
 		.select(
@@ -109,12 +114,24 @@ async function submitVehicleSearch(e) {
 			`
 		)
 		.ilike("VehicleID", `%${vehicleSearchInput}%`);
-	console.log("Search Result: ", data);
 
 	if (!data?.length > 0) {
-		return (vehicleResults.innerHTML = "<p>Person not found</p>");
+		vehicleMessage.innerHTML = "<p>Vehicle not found</p>";
+		return;
 	}
-	console.log(data);
+
+	vehicleMessage.innerHTML = "<p>Search successful</p>";
+
+	const missingOwners = data
+		.map((vehicle) => {
+			return !vehicle.OwnerID ? vehicle.VehicleID : null;
+		})
+		.join(", ");
+
+	if (missingOwners) {
+		vehicleMessage.innerHTML += `<p>No owner found for vehicles: ${missingOwners}</p>`;
+	}
+
 	vehicleResults.innerHTML = data
 		.map((vehicle) => {
 			return renderVehicleCard(vehicle);
@@ -130,15 +147,21 @@ async function submitVehicleSearch(e) {
 function renderVehicleCard(vehicle) {
 	return `<div class="result-card">
 						<img class="result-card-icon" src="assets/car.svg" alt="Car Icon" />
-						<div class="result-card-content">
+						<span class="result-card-content">
 							<h3 class="result-card-title">${vehicle.VehicleID}</h3>
-							<div class="result-attributes">
-								<div class="attribute-group">
-									<p><span class="attribute-name">Car: </span>${vehicle.Colour} ${vehicle.Make} ${vehicle.Model}</p>
-									<p><span class="attribute-name">Owner: </span>${vehicle.People.Name}</p>
-								</div>
-							</div>
-						</div>
+							<span class="result-attributes">
+								<span class="attribute-group">
+									<p><span class="attribute-name">Car: </span>${vehicle.Colour} ${vehicle.Make} ${
+		vehicle.Model
+	}</p>
+									<p class="${
+										!vehicle.People?.Name ? "attribute-missing" : ""
+									}"><span class="attribute-name">Owner: </span>${
+		vehicle.People?.Name ?? "missing"
+	}</p>
+								</span>
+							</span>
+						</span>
 					</div>`;
 }
 
@@ -170,7 +193,7 @@ async function submitNewVehicle(e) {
 	if (error) {
 		e.target.innerHTML = "<p>Error submitting vehicle.</p>";
 	}
-	e.target.innerHTML = "<p>New Vehicle Created.</p>";
+	e.target.innerHTML = "<p>Vehicle added successfully</p>";
 }
 
 // --- HELPERS ---

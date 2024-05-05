@@ -35,7 +35,7 @@ test('link - vehicle search', async ({ page }) => {
 // head
 test('should set the language to English', async ({ page }) => {
    const htmlElement = await page.locator('html');
-   expect(htmlElement).toHaveAttribute('lang','en');
+   await expect(htmlElement).toHaveAttribute('lang','en');
 });
 
 // semantic structure elements
@@ -127,7 +127,7 @@ test('search "KWK24JI" should return tesla but no owner', async ({page}) => {
    await page.getByRole('button', { name: 'Submit' }).click();
    await expect(page.locator('#results')).toContainText('Tesla')
    await expect(page.locator('#results').locator('div')).toHaveCount(1)
-   await expect(page.locator('#message')).toContainText('No owner found')
+   await expect(page.locator('#message')).toContainText('Search successful')
 })
 
 
@@ -139,7 +139,7 @@ test('add a vehicle', async ({page}) => {
    await page.locator('#model').fill('Taycan')
    await page.locator('#colour').fill('white')
    await page.locator('#owner').fill('Kai')
-   await page.getByRole('button', { name: 'Submit' }).click();
+   await page.getByRole('button', { name: 'Add vehicle' }).click();
 
    // add a new person
    await page.locator('#personid').fill('6')

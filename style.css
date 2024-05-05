@@ -45,10 +45,10 @@ body#container {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-template-rows: auto auto 5rem;
-  grid-template-areas: 
-    "header header header header header"
-    "sidebar main main main main"
-    "footer footer footer footer footer";
+	grid-template-areas:
+		"header header header header header"
+		"sidebar main main main main"
+		"footer footer footer footer footer";
 }
 
 textarea {
@@ -116,6 +116,7 @@ header nav ul li {
 header nav ul li a {
 	color: var(--text-gray);
 	text-decoration: none;
+	flex: 0 1 auto;
 }
 
 header nav ul li.active a,
@@ -135,7 +136,6 @@ aside {
 
 aside figure#figure-one {
 	margin: 0;
-	width: 100%;
 }
 
 aside figure#figure-one img {
