@@ -2,14 +2,16 @@
 
 A front-end interface that queries a supabase backend.
 
+This project uses [http-server](https://www.npmjs.com/package/http-server) to run a local development server.
+Playwright is configured to use the npm start script to automate running a dev server whilst testing.
+
+`npm run start`
+
 ## README Requirements
 
-1. The URL to the GitHub Page where the front end is hosted
-   - https://github.com/Ben-Bromley/UON-COMP-Coursework-2
-   - This is the version that will be used for marking, so please make sure it is working.
-     Please do not make any further changes after the submission, otherwise it will be considered
+   - Please do not make any further changes after the submission, otherwise it will be considered
      as late submission (using the last commit date/time).
-2. A description of the additional work for HTML, CSS, JavaScript, and/or database. Please see the marking rubrics below for the details about additional work (to achieve full mark
+   - A description of the additional work for HTML, CSS, JavaScript, and/or database. Please see the marking rubrics below for the details about additional work (to achieve full mark
    for each criteria). Please describe separately for each aspect, i.e., HTML/CSS/JavaScript/database, what the additional work is, and where they are (file name and line number)
 
    - Please say so in this document if you don't attempt any of these.
@@ -55,3 +57,5 @@ Additional Work:
  - Made design more responsive [caff049](https://github.com/Ben-Bromley/UON-COMP1004-Coursework-2/commit/caff049b384359293f8e815651fb594bf9450914)
    - adjusting the grid to display flex, in a column so the page appears header, aside, main, footer.
    - tweaked some spacing and sizing to make everything fit on smaller screens
+ - Accessibility score of 100
+ - 
